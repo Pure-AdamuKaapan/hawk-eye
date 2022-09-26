@@ -10,13 +10,14 @@ import hashlib
 import re
 
 class LogLine:
-    def __init__(self, pattern, column_names, logfile, component, status):
+    def __init__(self, pattern, column_names, logfile, section, status):
         self.pattern = pattern
         self.column_names = column_names
         self.logfile = logfile
-        self.componenet = component
+        self.section = section
         self.status = status
         self.df = {}
+        self.all_sections = {}
         
     def get_table_name(self):
         p = hashlib.sha256(self.pattern.encode("UTF-8")).hexdigest()
@@ -28,12 +29,15 @@ class MasterFile:
     STATUS_FAIL = "fail"
     STATUS_PASS = "pass"
 
-    COMPONENT_GLOBAL = "global"
-    COMPONENT_MSG = "msg"
+    SECTION_GLOBAL = "global"
+    SECTION_MSG = "msg"
     # log files 
     PX_LOG = "docker.out"
     
     patterns = [
-        LogLine("Started px with pid (\d+)", ["pid"], PX_LOG, COMPONENT_GLOBAL, STATUS_PASS),
-        LogLine("""failed to setup internal kvdb: ([^"]+)""", ["error_msg"], PX_LOG, COMPONENT_MSG, STATUS_FAIL)
-        ]
+        #Ignore column_names and section for now
+        LogLine("Started px with pid (?P<pid>\d+)", ["pid"], PX_LOG, SECTION_GLOBAL, STATUS_PASS),
+        LogLine("""failed to setup internal kvdb: (?P<error_msg>[^"]+)""", ["error_msg"], PX_LOG, SECTION_MSG, STATUS_FAIL),
+        LogLine("""csi.NodePublishVolume request received. VolumeID: (?P<vol_id>\d+), TargetPath: (?P<target_path>\S+)""", ["vol_id", "target_path"], PX_LOG, SECTION_MSG, STATUS_PASS)
+        
+    ]
