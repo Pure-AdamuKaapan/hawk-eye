@@ -1,6 +1,0 @@
-logfile,pattern,filename
-docker.out,Started px with pid (?P<pid>\d+),table_973304ca55b3413566c64d95da1208fb8a4879040e7fdae7f8465572caa19606.csv
-docker.out,"csi.NodePublishVolume request received. VolumeID: (?P<vol_id>\d+), TargetPath: (?P<target_path>\S+)",table_855d5500c4d4597a688b4ddbb81272e20fc4630c0d8727ec82ca7849dd387b12.csv
-kubelet.out,"MountVolume.MountDevice succeeded for volume \\""(?P<pv_name>\S+)\\"" .*UID\: \\""(?P<UID>[\w\-]+).* device mount path \\""(?P<device_path>\S+)\\""\"".* pod=\""(?P<pod_name>\S+)\""",table_1fe7a28925e8967658c591af15413e4c54171179e613ef9b463daa06cc94dc61.csv
-kubelet.out,"operationExecutor.VerifyControllerAttachedVolume started for volume.*UniqueName:.*\\""(?P<unique_name>\S+)\\"".*pod.*\\""(?P<pod_name>\S+)\\"".*\(UID: \\""(?P<UID>\S+)\\"".*pod=\""(?P<pod_full_name>\S+)\""",table_2ff45d4734ff41001f812cca6f02c1f4fe2295d6bc88ae9755bbf4499b8a9750.csv
-kubelet.out,"MountVolume.SetUp failed for volume \""(?P<pv_name>\S+)\"" .*pod \""(?P<pod_name>\S+)\"" .*UID\: \""(?P<UID>[\w\-]+)\""",table_d3043b4ae27f9ba9811e5c0c4af7b11a01983fbe23c221341eea698bbcfba922.csv
