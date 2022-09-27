@@ -33,18 +33,19 @@ const (
 )
 
 type EventSource struct {
-	Name string `json:"objectName"`
-	Kind string `json:"objectType"`
+	Name      string `json:"objectFullName"`
+	Kind      string `json:"objectType"`
+	ShortName string `json:"objectName"`
 }
 
 type Event struct {
-	Name         string        `json:"eventName"`
-	StartTime    uint64        `json:"start"`
-	EndTime      uint64        `json:"finish"`
-	StartUTC     string        `json:"startUTC"`
-	EndUTC       string        `json:"finishUTC"`
-	Severity     string        `json:"eventSeverity"`
-	EventSources []EventSource `json:"objects"`
+	Name         string         `json:"eventName"`
+	StartTime    uint64         `json:"start"`
+	EndTime      uint64         `json:"finish"`
+	StartUTC     string         `json:"startUTC"`
+	EndUTC       string         `json:"finishUTC"`
+	Severity     string         `json:"eventSeverity"`
+	EventSources []*EventSource `json:"objects"`
 }
 
 type record interface {
@@ -197,7 +198,7 @@ func (r *mountDeviceSetupSucceededRec) getPVName() string {
 	return r.pvName
 }
 
-func sourceMatches(left, right []EventSource) bool {
+func sourceMatches(left, right []*EventSource) bool {
 	if len(left) != len(right) {
 		return false
 	}
@@ -227,21 +228,20 @@ func recLess(left, right record) bool {
 	return left.getTimestamp() < right.getTimestamp()
 }
 
-func getSources(rec record) []EventSource {
-	return []EventSource{
-		{
-			Name: rec.getNodeName(),
-			Kind: Node,
-		},
-		{
-			Name: rec.getPodUID(), // TODO: use mapper to get pod name
-			Kind: Pod,
-		},
-		{
-			Name: rec.getPVName(),
-			Kind: Volume,
-		},
+func getSources(rec record) []*EventSource {
+	node := &EventSource{
+		Name: rec.getNodeName(),
+		Kind: Node,
 	}
+	pod := &EventSource{
+		Name: rec.getPodUID(), // TODO: use mapper to get pod name
+		Kind: Pod,
+	}
+	volume := &EventSource{
+		Name: rec.getPVName(),
+		Kind: Volume,
+	}
+	return []*EventSource{node, pod, volume}
 }
 
 func GetEvents(path string, focusObj string) ([]*Event, error) {
@@ -374,8 +374,32 @@ func GetEvents(path string, focusObj string) ([]*Event, error) {
 	for _, event := range events {
 		event.StartUTC = time.Unix(int64(event.StartTime), 0).UTC().String()
 		event.EndUTC = time.Unix(int64(event.EndTime), 0).UTC().String()
+
+		// TODO: temp for demo to make events show up on the timeline
+		if event.StartTime == 0 {
+			event.StartTime = event.EndTime - 1
+		} else if event.EndTime == 0 {
+			event.EndTime = event.StartTime + 1
+		} else if event.StartTime == event.EndTime {
+			event.EndTime++
+		}
+
+		// shorten source names
+		for _, source := range event.EventSources {
+			if source.Kind == Pod {
+				source.ShortName = truncateString(source.Name, 8)
+			} else if source.Kind == Volume {
+				source.ShortName = truncateString(source.Name, 12)
+			}
+		}
 	}
 	return events, nil
+}
+
+func truncateString(str string, maxLen int) string {
+	r := []rune(str)
+	trunc := r[:maxLen]
+	return string(trunc) + "..."
 }
 
 func getRecs(fpath string, focusObj string, recFunc valuesToRec) ([]record, error) {
