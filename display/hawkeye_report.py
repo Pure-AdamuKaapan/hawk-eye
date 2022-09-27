@@ -132,13 +132,13 @@ class Report:
         must_fix = self.get_must_fix()
         for key in must_fix.keys():
             command_collapse += self.get_command_html(key, must_fix[key])
-        content += self.get_single_node("Must-fix", command_collapse)
+        content += self.get_single_node("Know Issues", command_collapse)
         command_collapse = ""
         reco = self.get_recommended_fix()
         for key in reco.keys():
             command_collapse += self.get_command_html(key, reco[key])
         content += self.get_single_node("Recommended fixes", command_collapse)
-        return self.get_section("Finterprints", content)
+        return self.get_section("Fingerprints", content)
 
     def get_page(self):
         page_start = """<!DOCTYPE html>
