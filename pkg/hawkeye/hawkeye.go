@@ -15,7 +15,8 @@ import (
 )
 
 const (
-	mountSetupEvent = "mount setup"
+	mountSetupEvent = "Mount Setup"
+	pxDownEvent     = "PX Down"
 )
 
 // Event severities
@@ -50,14 +51,28 @@ type Event struct {
 
 type record interface {
 	getNodeName() string
+	getTimestamp() uint64
+}
+
+type volRecord interface {
+	record
 	getPodUID() string
 	getPVName() string
-	getTimestamp() uint64
 }
 
 type commonRec struct {
 	timestamp uint64
 	nodeName  string
+}
+
+type pxDaemonExitedRec struct {
+	*commonRec
+	exitCode  int
+	exitDescr string
+}
+
+type pxReadyRec struct {
+	*commonRec
 }
 
 type nodePublishVolumeRec struct {
@@ -91,6 +106,44 @@ func (c *commonRec) getNodeName() string {
 
 func (c *commonRec) getTimestamp() uint64 {
 	return c.timestamp
+}
+
+func NewPXDaemonExitedRec(vals []string) (record, error) {
+	// timestamp,node_name,service_status,exit_code,exit_descr
+	// 1662389588,ip-10-13-112-170.pwx.dev.purestorage.com,stopped,0,)
+	// 1662390578,ip-10-13-112-170.pwx.dev.purestorage.com,exited,9,; not expected)
+	expected := 5
+	if len(vals) != expected {
+		return nil, fmt.Errorf("NewPXDaemonExitedRec: wrong number of values %d, expected %d", len(vals), expected)
+	}
+	exitCode, err := strconv.Atoi(vals[2])
+	if err != nil {
+		// TODO: handle error
+		exitCode = -1
+	}
+	return &pxDaemonExitedRec{
+		commonRec: &commonRec{
+			timestamp: parseTimestamp(vals[0]),
+			nodeName:  vals[1],
+		},
+		exitCode:  exitCode,
+		exitDescr: vals[3],
+	}, nil
+}
+
+func NewPXReadyRec(vals []string) (record, error) {
+	// timestamp,node_name
+	// 1662386697,ip-10-13-112-170.pwx.dev.purestorage.com
+	expected := 2
+	if len(vals) != expected {
+		return nil, fmt.Errorf("NewPXReadyRec: wrong number of values %d, expected %d", len(vals), expected)
+	}
+	return &pxDaemonExitedRec{
+		commonRec: &commonRec{
+			timestamp: parseTimestamp(vals[0]),
+			nodeName:  vals[1],
+		},
+	}, nil
 }
 
 func NewNodePublishVolumeRec(vals []string) (record, error) {
@@ -211,7 +264,7 @@ func sourceMatches(left, right []*EventSource) bool {
 	return true
 }
 
-func sourceLess(left, right record) bool {
+func sourceLess(left, right volRecord) bool {
 	if left.getNodeName() < right.getNodeName() {
 		return true
 	}
@@ -222,13 +275,28 @@ func sourceLess(left, right record) bool {
 }
 
 func recLess(left, right record) bool {
+	if left.getNodeName() < right.getNodeName() {
+		return true
+	}
+	return left.getTimestamp() < right.getTimestamp()
+}
+
+func volRecLess(left, right volRecord) bool {
 	if sourceLess(left, right) {
 		return true
 	}
 	return left.getTimestamp() < right.getTimestamp()
 }
 
-func getSources(rec record) []*EventSource {
+func getRecSources(rec record) []*EventSource {
+	node := &EventSource{
+		Name: rec.getNodeName(),
+		Kind: Node,
+	}
+	return []*EventSource{node}
+}
+
+func getVolRecSources(rec volRecord) []*EventSource {
 	node := &EventSource{
 		Name: rec.getNodeName(),
 		Kind: Node,
@@ -245,6 +313,159 @@ func getSources(rec record) []*EventSource {
 }
 
 func GetEvents(path string, focusObj string) ([]*Event, error) {
+	var events []*Event
+
+	ret, err := getPXDownEvents(path)
+	if err != nil {
+		return nil, fmt.Errorf("failed to get PX down events: %w", err)
+	}
+	events = append(events, ret...)
+
+	ret, err = getMountSetupEvents(path, focusObj)
+	if err != nil {
+		return nil, fmt.Errorf("failed to get mount setup events: %w", err)
+	}
+	events = append(events, ret...)
+
+	// post process
+	for _, event := range events {
+		event.StartUTC = time.Unix(int64(event.StartTime), 0).UTC().String()
+		event.EndUTC = time.Unix(int64(event.EndTime), 0).UTC().String()
+
+		// TODO: temp for demo to make events show up on the timeline
+		if event.StartTime == 0 {
+			event.StartTime = event.EndTime - 1
+		} else if event.EndTime == 0 {
+			event.EndTime = event.StartTime + 1
+		} else if event.StartTime == event.EndTime {
+			event.EndTime++
+		}
+
+		// shorten source names
+		for _, source := range event.EventSources {
+			if source.Kind == Pod {
+				source.ShortName = truncateString(source.Name, 8)
+			} else if source.Kind == Volume {
+				source.ShortName = truncateString(source.Name, 12)
+			} else {
+				source.ShortName = source.Name
+			}
+		}
+	}
+	return events, nil
+}
+
+func getPXDownEvents(path string) ([]*Event, error) {
+	exitedRecs := []record{}
+	readyRecs := []record{}
+
+	// PX daemon exited strings
+	fPath := filepath.Join(path, "table_aa037272f351b6586c80f9dbe7a1bb1ae0683cc3c2a4bf1f8013c4221f138e32.csv")
+	exitedRecs, err := getRecs(fPath, "", NewPXDaemonExitedRec)
+	if err != nil {
+		return nil, err
+	}
+
+	// PX daemon ready strings
+	fPath = filepath.Join(path, "table_23ca195d80bb3a271ccde17c2fb9fb7ff577e1c1f8cc54702a7b5f713d0330f1.csv")
+	readyRecs, err = getRecs(fPath, "", NewPXReadyRec)
+	if err != nil {
+		return nil, err
+	}
+
+	sort.SliceStable(exitedRecs, func(i, j int) bool {
+		return recLess(exitedRecs[i], exitedRecs[j])
+	})
+
+	sort.SliceStable(readyRecs, func(i, j int) bool {
+		return recLess(readyRecs[i], readyRecs[j])
+	})
+
+	events := []*Event{}
+
+	var exitedIdx, readyIdx int
+	for exitedIdx < len(exitedRecs) && readyIdx < len(readyRecs) {
+		exitedRec := exitedRecs[exitedIdx]
+		readyRec := readyRecs[readyIdx]
+
+		exitedSources := getRecSources(exitedRec)
+		readySources := getRecSources(readyRec)
+
+		if exitedRec.getTimestamp() > readyRec.getTimestamp() {
+			// ready record without the preceding exit rec
+			event := &Event{
+				Name:         pxDownEvent,
+				EventSources: readySources,
+				EndTime:      readyRec.getTimestamp(),
+			}
+			event.Severity = Error
+			events = append(events, event)
+			readyIdx++
+			continue
+		} else if exitedRec.getNodeName() != readyRec.getNodeName() {
+			if exitedRec.getNodeName() < readyRec.getNodeName() {
+				// exited without the subsequent ready for the same node
+				event := &Event{
+					Name:         pxDownEvent,
+					EventSources: exitedSources,
+					StartTime:    exitedRec.getTimestamp(),
+				}
+				event.Severity = Error
+				events = append(events, event)
+				exitedIdx++
+				continue
+			} else {
+				// ready without previous exited for the same node
+				event := &Event{
+					Name:         pxDownEvent,
+					EventSources: readySources,
+					EndTime:      readyRec.getTimestamp(),
+				}
+				event.Severity = Error
+				events = append(events, event)
+				readyIdx++
+				continue
+			}
+		}
+
+		// exited and ready recs match (have the same node and ready is after exited)
+		event := &Event{
+			Name:         pxDownEvent,
+			EventSources: exitedSources,
+			StartTime:    exitedRec.getTimestamp(),
+			EndTime:      readyRec.getTimestamp(),
+			Severity:     Error,
+		}
+		events = append(events, event)
+		exitedIdx++
+		readyIdx++
+	}
+	for ; exitedIdx < len(exitedRecs); exitedIdx++ {
+		// exited without ready
+		rec := exitedRecs[exitedIdx]
+		event := &Event{
+			Name:         pxDownEvent,
+			EventSources: getRecSources(rec),
+			StartTime:    rec.getTimestamp(),
+			Severity:     Error,
+		}
+		events = append(events, event)
+	}
+	for ; readyIdx < len(readyRecs); readyIdx++ {
+		// ready without exited
+		rec := readyRecs[readyIdx]
+		event := &Event{
+			Name:         pxDownEvent,
+			EventSources: getRecSources(rec),
+			EndTime:      rec.getTimestamp(),
+			Severity:     Error,
+		}
+		events = append(events, event)
+	}
+	return events, nil
+}
+
+func getMountSetupEvents(path string, focusObj string) ([]*Event, error) {
 	startRecs := []record{}
 	finishRecs := []record{}
 
@@ -275,11 +496,11 @@ func GetEvents(path string, focusObj string) ([]*Event, error) {
 	finishRecs = append(finishRecs, ret...)
 
 	sort.SliceStable(startRecs, func(i, j int) bool {
-		return recLess(startRecs[i], startRecs[j])
+		return volRecLess(startRecs[i].(volRecord), startRecs[j].(volRecord))
 	})
 
 	sort.SliceStable(finishRecs, func(i, j int) bool {
-		return recLess(finishRecs[i], finishRecs[j])
+		return volRecLess(finishRecs[i].(volRecord), finishRecs[j].(volRecord))
 	})
 
 	// for _, rec := range recs {
@@ -290,11 +511,11 @@ func GetEvents(path string, focusObj string) ([]*Event, error) {
 
 	var startIdx, finishIdx int
 	for startIdx < len(startRecs) && finishIdx < len(finishRecs) {
-		startRec := startRecs[startIdx]
-		finishRec := finishRecs[finishIdx]
+		startRec := startRecs[startIdx].(volRecord)
+		finishRec := finishRecs[finishIdx].(volRecord)
 
-		startSources := getSources(startRec)
-		finishSources := getSources(finishRec)
+		startSources := getVolRecSources(startRec)
+		finishSources := getVolRecSources(finishRec)
 
 		if startRec.getTimestamp() > finishRec.getTimestamp() {
 			// finish without a start
@@ -351,10 +572,10 @@ func GetEvents(path string, focusObj string) ([]*Event, error) {
 	}
 	for ; startIdx < len(startRecs); startIdx++ {
 		// start without finish
-		rec := startRecs[startIdx]
+		rec := startRecs[startIdx].(volRecord)
 		event := &Event{
 			Name:         mountSetupEvent,
-			EventSources: getSources(rec),
+			EventSources: getVolRecSources(rec),
 			StartTime:    rec.getTimestamp(),
 		}
 		event.Severity = Error
@@ -362,36 +583,14 @@ func GetEvents(path string, focusObj string) ([]*Event, error) {
 	}
 	for ; finishIdx < len(finishRecs); finishIdx++ {
 		// finish without start
-		rec := finishRecs[finishIdx]
+		rec := finishRecs[finishIdx].(volRecord)
 		event := &Event{
 			Name:         mountSetupEvent,
-			EventSources: getSources(rec),
+			EventSources: getVolRecSources(rec),
 			EndTime:      rec.getTimestamp(),
 		}
 		event.Severity = Error
 		events = append(events, event)
-	}
-	for _, event := range events {
-		event.StartUTC = time.Unix(int64(event.StartTime), 0).UTC().String()
-		event.EndUTC = time.Unix(int64(event.EndTime), 0).UTC().String()
-
-		// TODO: temp for demo to make events show up on the timeline
-		if event.StartTime == 0 {
-			event.StartTime = event.EndTime - 1
-		} else if event.EndTime == 0 {
-			event.EndTime = event.StartTime + 1
-		} else if event.StartTime == event.EndTime {
-			event.EndTime++
-		}
-
-		// shorten source names
-		for _, source := range event.EventSources {
-			if source.Kind == Pod {
-				source.ShortName = truncateString(source.Name, 8)
-			} else if source.Kind == Volume {
-				source.ShortName = truncateString(source.Name, 12)
-			}
-		}
 	}
 	return events, nil
 }
@@ -428,8 +627,11 @@ func getRecs(fpath string, focusObj string, recFunc valuesToRec) ([]record, erro
 		if err != nil {
 			log.Fatal(err)
 		}
-		if focusObj != "" && rec.getPodUID() != focusObj { // TODO: support more types for focusObj
-			continue
+		if focusObj != "" {
+			volRec, ok := rec.(volRecord)
+			if ok && volRec.getPodUID() != focusObj { // TODO: support more types for focusObj
+				continue
+			}
 		}
 		recs = append(recs, rec)
 	}
