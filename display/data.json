@@ -13,8 +13,8 @@
 			"objectType": "Volume",
 			"objectName": "VolumeA"
 		}],
-		"start": "2022-07-07 12:00:00",
-		"finish": "2022-07-07 12:00:01",
+		"start": "",
+		"finish": "1664234235000",
 		"eventType": "",
 		"eventName": "Create"
 	},
@@ -31,8 +31,8 @@
 			"objectType": "Volume",
 			"objectName": "VolumeA"
 		}],
-		"start": "2022-07-07 12:05",
-		"finish": "2022-07-07 12:06",
+		"start": "1664234235000",
+		"finish": "1664234295000",
 		"eventType": "",
 		"eventName": "Attach"
 	},
@@ -49,8 +49,8 @@
 			"objectType": "Volume",
 			"objectName": "VolumeA"
 		}],
-		"start": "2022-07-07 12:06",
-		"finish": "2022-07-07 12:07",
+		"start": "1664234295000",
+		"finish": "1664234355000",
 		"eventType": "",
 		"eventName": "Mount"
 	},
@@ -67,8 +67,8 @@
 			"objectType": "Volume",
 			"objectName": "VolumeA"
 		}],
-		"start": "2022-07-07 12:06",
-		"finish": "2022-07-07 12:07",
+		"start": "1664234355000",
+		"finish": "",
 		"eventType": "",
 		"eventName": "Mount"
 	},
@@ -81,8 +81,8 @@
 			"objectType": "Portworx",
 			"objectName": "Portworx"
 		}],
-		"start": "2022-07-07 12:06",
-		"finish": "2022-07-07 12:07",
+		"start": "1664234235000",
+		"finish": "1664234235000",
 		"eventType": "",
 		"eventName": "Creating"
 	},
@@ -95,8 +95,8 @@
 			"objectType": "Portworx",
 			"objectName": "Portworx"
 		}],
-		"start": "2022-07-07 12:06",
-		"finish": "2022-07-07 12:07",
+		"start": "1664234430000",
+		"finish": "1664234490000",
 		"eventType": "",
 		"eventName": "Running"
 	},
@@ -109,8 +109,8 @@
 			"objectType": "Portworx",
 			"objectName": "Portworx"
 		}],
-		"start": "2022-07-07 12:06",
-		"finish": "2022-07-07 12:07",
+		"start": "1664234415000",
+		"finish": "1664234430000",
 		"eventType": "",
 		"eventName": "Creating"
 	},
@@ -123,8 +123,8 @@
 			"objectType": "Portworx",
 			"objectName": "Portworx"
 		}],
-		"start": "2022-07-07 12:06",
-		"finish": "2022-07-07 12:07",
+		"start": "1664234430000",
+		"finish": "1664234235000",
 		"eventType": "",
 		"eventName": "Running"
 	}]
