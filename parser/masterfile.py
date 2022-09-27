@@ -66,6 +66,19 @@ class MasterFile:
         # if the original string contains \" -> \\\\\"
         LogLine("Started px with pid (?P<pid>\d+)", ["pid"], PX_LOG),
 
+        # Sep 05 15:09:35 ip-10-13-112-170.pwx.dev.purestorage.com portworx[1300]: PXPROCS[INFO]: px-storage exited with code: 9
+        LogLine("px-storage exited with code: (?P<exit_code>\d+)", [], PX_LOG),
+
+        # Sep 05 15:11:25 ip-10-13-112-170.pwx.dev.purestorage.com portworx[1300]: time="2022-09-05T15:11:25Z" level=info msg="Storage is ready" file="driver.go:2150" Driver=pxd Function=NodeStart component=porx/storage/driver/volume
+        LogLine("Storage is ready", [], PX_LOG),
+
+        # Sep 05 15:11:33 ip-10-13-112-170.pwx.dev.purestorage.com portworx[1300]: time="2022-09-05T15:11:33Z" level=info msg="PX is ready on Node: 4acd1fe2-6615-4b1f-95ff-75ef8d135faa. CLI accessible at /opt/pwx/bin/pxctl." file="px.go:758" component=porx/px
+        LogLine("PX is ready on Node: (?P<node_id>\S+)\. CLI accessible", [], PX_LOG),
+
+        # Sep 01 21:41:31 nthakur-k8s-1-node4 portworx[1351]: 2022-09-01 21:41:31,402 INFO stopped: pxdaemon (exit status 0)
+        # Sep 05 15:09:38 ip-10-13-112-170.pwx.dev.purestorage.com portworx[1300]: 2022-09-05 15:09:38,407 INFO exited: pxdaemon (exit status 9; not expected)
+        LogLine("INFO (?P<service_status>\S+): pxdaemon.*exit status (?P<exit_code>\d+)(?P<exit_descr>.*)", [], PX_LOG),
+
         LogLine("""failed to setup internal kvdb: (?P<error_msg>[^"]+)""", ["error_msg"], PX_LOG),
 
         #Sep 05 15:11:40 ip-10-13-112-170.pwx.dev.purestorage.com portworx[1300]: time="2022-09-05T15:11:40Z" level=info msg="csi.NodePublishVolume request received. VolumeID: 920849628428829313, TargetPath: /var/lib/kubelet/pods/5a21d20f-cacd-43fe-be3e-194c34c673cd/volumes/kubernetes.io~csi/pvc-0d81053d-6952-404d-b213-2adea82bc609/mount" component=csi-driver correlation-id=b150fe93-d7ca-4293-9e55-9bc4fef2adf3 origin=csi-driver
