@@ -1,0 +1,39 @@
+Status: PX is operational
+Telemetry: Healthy
+Metering: Disabled or Unhealthy
+License: PX-Enterprise (floating) (lease expired 8h, 41m ago)
+Node ID: 6d8c5478-fbeb-436f-b3dd-e965ea3b9e80
+	IP: 10.13.173.201 
+ 	Local Storage Pool: 1 pool
+	POOL	IO_PRIORITY	RAID_LEVEL	USABLE	USED	STATUS	ZONE	REGION
+	0	HIGH		raid0		384 GiB	17 GiB	Online	default	default
+	Local Storage Devices: 3 devices
+	Device	Path		Media Type		Size		Last-Scan
+	0:1	/dev/sdc	STORAGE_MEDIUM_SSD	128 GiB		18 Sep 22 18:02 UTC
+	0:2	/dev/sdd	STORAGE_MEDIUM_SSD	128 GiB		18 Sep 22 18:02 UTC
+	0:3	/dev/sde	STORAGE_MEDIUM_SSD	128 GiB		18 Sep 22 18:02 UTC
+	total			-			384 GiB
+	Cache Devices:
+	 * No cache devices
+	Metadata Device: 
+	1	/dev/sdb	STORAGE_MEDIUM_SSD	64 GiB
+Cluster Summary
+	Cluster ID: PX-INT-C0-9_18_FVT-MN-SCALE-REPL-ADD-REDUCE-NEXT-PX-RELEASE_198_392
+	Cluster UUID: d3c710e5-4dd4-476b-a2b3-42c0dca3a49d
+	Scheduler: none
+	Nodes: 9 node(s) with storage (6 online)
+	IP		ID					SchedulerNodeName	Auth		StorageNode	Used		Capacity	Status	StorageStatus		Version		Kernel				OS
+	10.13.160.77	d53f14c5-3852-4e5d-a2a4-b9e071e5def7	N/A			Disabled	Yes		12 GiB		384 GiB		Online	Unavailable		2.12.0-4cb3c90	3.10.0-1160.76.1.el7.x86_64	CentOS Linux 7 (Core)
+	10.13.168.105	c331213b-c9ac-45a3-906b-0a8762898451	N/A			Disabled	Yes		Unavailable	Unavailable	Offline	Unavailable		2.12.0-4cb3c90	3.10.0-1160.76.1.el7.x86_64	CentOS Linux 7 (Core)
+	10.13.162.150	b6403c8b-ac75-4936-8815-22f4230ac0ab	N/A			Disabled	Yes		17 GiB		384 GiB		Online	Unavailable		2.12.0-4cb3c90	3.10.0-1160.76.1.el7.x86_64	CentOS Linux 7 (Core)
+	10.13.163.110	8b712eb4-b047-4f79-9945-abc0918c1850	N/A			Disabled	Yes		17 GiB		384 GiB		Online	Unavailable		2.12.0-4cb3c90	3.10.0-1160.76.1.el7.x86_64	CentOS Linux 7 (Core)
+	10.13.174.190	7db621b1-6b11-401a-9d6d-00ade0bb4afd	N/A			Disabled	Yes		12 GiB		384 GiB		Online	Unavailable		2.12.0-4cb3c90	3.10.0-1160.76.1.el7.x86_64	CentOS Linux 7 (Core)
+	10.13.173.201	6d8c5478-fbeb-436f-b3dd-e965ea3b9e80	N/A			Disabled	Yes		17 GiB		384 GiB		Online	Unavailable (This node)	2.12.0-4cb3c90	3.10.0-1160.76.1.el7.x86_64	CentOS Linux 7 (Core)
+	10.13.168.150	3fbc42dc-609d-4b8d-8b37-045d38c9e3c7	N/A			Disabled	Yes		Unavailable	Unavailable	Offline	Unavailable		2.12.0-4cb3c90	3.10.0-1160.76.1.el7.x86_64	CentOS Linux 7 (Core)
+	10.13.169.88	36cb7273-6512-4554-afe7-cb99870397a8	N/A			Disabled	Yes		17 GiB		384 GiB		Online	Unavailable		2.12.0-4cb3c90	3.10.0-1160.76.1.el7.x86_64	CentOS Linux 7 (Core)
+	10.13.168.203	18336bac-b710-4efa-8d5b-1cca80a911e0	N/A			Disabled	Yes		Unavailable	Unavailable	Offline	Unavailable		2.12.0-4cb3c90	3.10.0-1160.76.1.el7.x86_64	CentOS Linux 7 (Core)
+	Warnings: 
+		 ERROR: KVDB connection failed, either node has networking issues or KVDB is down or unhealthy. Volume and node operations may be unavailable but I/O will continue
+Global Storage Pool
+	Total Used    	:  133 GiB
+	Total Capacity	:  3.4 TiB

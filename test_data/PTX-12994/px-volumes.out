@@ -1,0 +1,260 @@
+[{
+ "id": "115541881621569881",
+ "source": {
+  "parent": "166265585207995688",
+  "seed": ""
+ },
+ "readonly": true,
+ "locator": {
+  "name": "166265585207995688.snap.220918064630",
+  "volume_labels": {
+   "name": "disk1"
+  }
+ },
+ "ctime": "2022-09-18T18:46:02Z",
+ "spec": {
+  "ephemeral": false,
+  "size": "107374182400",
+  "format": "ext4",
+  "block_size": "4096",
+  "ha_level": "2",
+  "cos": "low",
+  "io_profile": "auto",
+  "dedupe": false,
+  "snapshot_interval": 0,
+  "volume_labels": {
+   "best_effort_location_provisioning": "true",
+   "name": "disk1"
+  },
+  "shared": false,
+  "replica_set": {
+
+  },
+  "aggregation_level": 1,
+  "encrypted": false,
+  "passphrase": "",
+  "snapshot_schedule": "",
+  "scale": 1,
+  "sticky": false,
+  "group_enforced": false,
+  "compressed": false,
+  "cascaded": false,
+  "journal": false,
+  "sharedv4": false,
+  "queue_depth": 128,
+  "force_unsupported_fs_type": false,
+  "nodiscard": true,
+  "io_strategy": {
+   "async_io": false,
+   "early_ack": false,
+   "direct_io": false
+  },
+  "storage_policy": "",
+  "fp_preference": false,
+  "xattr": "COW_ON_DEMAND",
+  "proxy_write": false,
+  "auto_fstrim": true,
+  "io_throttle": {
+   "read_iops": 0,
+   "write_iops": 0,
+   "read_bw_mbytes": 0,
+   "write_bw_mbytes": 0
+  }
+ },
+ "usage": "0",
+ "format": "ext4",
+ "status": "up",
+ "state": "detached",
+ "attached_on": "",
+ "attached_state": "ATTACH_STATE_EXTERNAL",
+ "device_path": "",
+ "secure_device_path": "",
+ "replica_sets": [
+  {
+   "nodes": [
+    "3fbc42dc-609d-4b8d-8b37-045d38c9e3c7",
+    "36cb7273-6512-4554-afe7-cb99870397a8"
+   ],
+   "pool_uuids": [
+    "0f1f3cfb-f282-4cd1-b143-a4caeadb50ea",
+    "4bceb917-d248-437c-b2f5-c8dcfb26f1e0"
+   ]
+  }
+ ],
+ "runtime_state": [
+  {
+   "runtime_state": {
+    "ID": "0",
+    "PXReplReAddNodeMid": "",
+    "PXReplReAddPools": "",
+    "ReplNodePools": "0,0",
+    "ReplRemoveMids": "",
+    "ReplicaSetCreateMid": "3fbc42dc-609d-4b8d-8b37-045d38c9e3c7,36cb7273-6512-4554-afe7-cb99870397a8",
+    "ReplicaSetCurr": "[4 5]",
+    "ReplicaSetCurrMid": "3fbc42dc-609d-4b8d-8b37-045d38c9e3c7,36cb7273-6512-4554-afe7-cb99870397a8",
+    "RuntimeState": "clean"
+   }
+  }
+ ],
+ "error": "",
+ "fs_resize_required": false,
+ "detach_time": "2022-09-18T18:46:02Z",
+ "fpConfig": {
+  "setup_on": -1,
+  "promote": false,
+  "status": "FASTPATH_INACTIVE",
+  "dirty": false,
+  "coord_uuid": "",
+  "force_failover": false
+ },
+ "last_scan_status": "FS_HEALTH_STATUS_UNKNOWN",
+ "derived_io_profile": "db_remote",
+ "in_trashcan": false
+},{
+ "id": "989852981010096055",
+ "source": {
+  "parent": "",
+  "seed": ""
+ },
+ "readonly": false,
+ "locator": {
+  "name": "volHAReduceWhileResync",
+  "volume_labels": {
+   "name": "disk1"
+  }
+ },
+ "ctime": "2022-09-18T19:11:17Z",
+ "spec": {
+  "ephemeral": false,
+  "size": "107374182400",
+  "format": "ext4",
+  "block_size": "4096",
+  "ha_level": "3",
+  "cos": "low",
+  "io_profile": "auto",
+  "dedupe": false,
+  "snapshot_interval": 0,
+  "volume_labels": {
+   "best_effort_location_provisioning": "true",
+   "name": "disk1"
+  },
+  "shared": false,
+  "replica_set": {
+
+  },
+  "aggregation_level": 1,
+  "encrypted": false,
+  "passphrase": "",
+  "snapshot_schedule": "",
+  "scale": 1,
+  "sticky": false,
+  "group_enforced": false,
+  "compressed": false,
+  "cascaded": false,
+  "journal": false,
+  "sharedv4": false,
+  "queue_depth": 128,
+  "force_unsupported_fs_type": false,
+  "nodiscard": true,
+  "io_strategy": {
+   "async_io": false,
+   "early_ack": false,
+   "direct_io": false
+  },
+  "storage_policy": "",
+  "fp_preference": false,
+  "xattr": "COW_ON_DEMAND",
+  "scan_policy": {
+   "trigger": "none",
+   "action": "none"
+  },
+  "proxy_write": false,
+  "auto_fstrim": true,
+  "io_throttle": {
+   "read_iops": 0,
+   "write_iops": 0,
+   "read_bw_mbytes": 0,
+   "write_bw_mbytes": 0
+  }
+ },
+ "usage": "5374631936",
+ "format": "ext4",
+ "status": "up",
+ "state": "attached",
+ "attached_on": "10.13.173.201",
+ "attached_state": "ATTACH_STATE_EXTERNAL",
+ "device_path": "/dev/pxd/pxd989852981010096055",
+ "secure_device_path": "",
+ "attach_path": [
+  "/mnt/disk1"
+ ],
+ "replica_sets": [
+  {
+   "nodes": [
+    "8b712eb4-b047-4f79-9945-abc0918c1850",
+    "b6403c8b-ac75-4936-8815-22f4230ac0ab",
+    "6d8c5478-fbeb-436f-b3dd-e965ea3b9e80"
+   ],
+   "pool_uuids": [
+    "e5a30e4d-9d3c-406f-ab56-eaa10191e9b8",
+    "26f618f3-2e11-493c-a23a-770a4108e7b9",
+    "68ef8458-5530-4c34-819e-464a351f2614"
+   ]
+  }
+ ],
+ "runtime_state": [
+  {
+   "runtime_state": {
+    "FullResyncBlocks": "[{1 0} {6 0} {8 0} {-1 0} {-1 0}]",
+    "ID": "0",
+    "PXReplReAddNodeMid": "",
+    "PXReplReAddPools": "",
+    "ReadQuorum": "1",
+    "ReadSet": "[1 6 8]",
+    "ReplNodePools": "0,0,0",
+    "ReplRemoveMids": "",
+    "ReplicaSetCreateMid": "8b712eb4-b047-4f79-9945-abc0918c1850,b6403c8b-ac75-4936-8815-22f4230ac0ab,6d8c5478-fbeb-436f-b3dd-e965ea3b9e80",
+    "ReplicaSetCurr": "[1 6 8]",
+    "ReplicaSetCurrMid": "8b712eb4-b047-4f79-9945-abc0918c1850,b6403c8b-ac75-4936-8815-22f4230ac0ab,6d8c5478-fbeb-436f-b3dd-e965ea3b9e80",
+    "ReplicaSetNext": "[1 6 8]",
+    "ReplicaSetNextMid": "8b712eb4-b047-4f79-9945-abc0918c1850,b6403c8b-ac75-4936-8815-22f4230ac0ab,6d8c5478-fbeb-436f-b3dd-e965ea3b9e80",
+    "ResyncBlocks": "[{1 0} {6 0} {8 0} {-1 0} {-1 0}]",
+    "RuntimeState": "clean",
+    "TimestampBlocksPerNode": "[0 0 0 0 0]",
+    "TimestampBlocksTotal": "0",
+    "WriteQuorum": "2",
+    "WriteSet": "[1 6 8]"
+   }
+  }
+ ],
+ "error": "",
+ "fs_resize_required": false,
+ "attach_time": "2022-09-18T19:11:31Z",
+ "detach_time": "2022-09-18T19:11:20Z",
+ "fpConfig": {
+  "setup_on": -1,
+  "promote": false,
+  "status": "FASTPATH_INACTIVE",
+  "dirty": false,
+  "coord_uuid": "",
+  "force_failover": false
+ },
+ "last_scan_status": "FS_HEALTH_STATUS_UNKNOWN",
+ "mount_options": {
+  "options": {
+   "nodiscard": ""
+  }
+ },
+ "sharedv4_mount_options": {
+  "options": {
+   "actimeo": "60",
+   "proto": "tcp",
+   "retrans": "2",
+   "soft": "",
+   "timeo": "600",
+   "vers": "3.0"
+  }
+ },
+ "derived_io_profile": "db_remote",
+ "in_trashcan": false
+}]

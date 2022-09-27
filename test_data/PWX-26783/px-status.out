@@ -1,0 +1,33 @@
+Status: PX is operational
+Telemetry: Healthy
+Metering: Disabled or Unhealthy
+License: Trial (expires in 31 days)
+Node ID: 4acd1fe2-6615-4b1f-95ff-75ef8d135faa
+	IP: 10.13.112.170 
+ 	Local Storage Pool: 2 pools
+	POOL	IO_PRIORITY	RAID_LEVEL	USABLE	USED	STATUS	ZONE	REGION
+	0	HIGH		raid0		32 GiB	2.0 GiB	Online	default	default
+	1	HIGH		raid0		125 GiB	12 GiB	Online	default	default
+	Local Storage Devices: 2 devices
+	Device	Path		Media Type		Size		Last-Scan
+	0:1	/dev/sdb	STORAGE_MEDIUM_SSD	32 GiB		05 Sep 22 15:10 UTC
+	1:1	/dev/sdc2	STORAGE_MEDIUM_SSD	125 GiB		05 Sep 22 15:10 UTC
+	total			-			157 GiB
+	Cache Devices:
+	 * No cache devices
+	Journal Device: 
+	1	/dev/sdc1	STORAGE_MEDIUM_SSD	3.0 GiB
+Cluster Summary
+	Cluster ID: tp-nextpx-k3s-op-spddry-22-09-05-14-02-26-px-int
+	Cluster UUID: 6affdfa7-2ef0-44db-b7e8-6d1cff6a37ef
+	Scheduler: kubernetes
+	Nodes: 5 node(s) with storage (5 online)
+	IP		ID					SchedulerNodeName				Auth		StorageNode	Used	Capacity	Status	StorageStatus	Version		Kernel				OS
+	10.13.114.5	fb8271ab-3f4f-48ea-948f-983e8220f2ae	ip-10-13-114-5.pwx.dev.purestorage.com		Disabled	Yes		16 GiB	157 GiB		Online	Up		2.12.0-52d00be	4.20.13-1.el7.elrepo.x86_64	CentOS Linux 7 (Core)
+	10.13.114.57	8f97562c-4aa1-486f-96bf-13faf0b650e5	ip-10-13-114-57.pwx.dev.purestorage.com		Disabled	Yes		11 GiB	157 GiB		Online	Up		2.12.0-52d00be	4.20.13-1.el7.elrepo.x86_64	CentOS Linux 7 (Core)
+	10.13.112.170	4acd1fe2-6615-4b1f-95ff-75ef8d135faa	ip-10-13-112-170.pwx.dev.purestorage.com	Disabled	Yes		14 GiB	157 GiB		Online	Up (This node)	2.12.0-52d00be	4.20.13-1.el7.elrepo.x86_64	CentOS Linux 7 (Core)
+	10.13.112.147	3f6c3a2d-26cc-4234-bd3d-dc81c2c065b2	ip-10-13-112-147.pwx.dev.purestorage.com	Disabled	Yes		13 GiB	157 GiB		Online	Up		2.12.0-52d00be	4.20.13-1.el7.elrepo.x86_64	CentOS Linux 7 (Core)
+	10.13.112.158	16b4a9bf-8138-42f6-b9d4-89edf1c6ddb4	ip-10-13-112-158.pwx.dev.purestorage.com	Disabled	Yes		15 GiB	157 GiB		Online	Up		2.12.0-52d00be	4.20.13-1.el7.elrepo.x86_64	CentOS Linux 7 (Core)
+Global Storage Pool
+	Total Used    	:  69 GiB
+	Total Capacity	:  785 GiB

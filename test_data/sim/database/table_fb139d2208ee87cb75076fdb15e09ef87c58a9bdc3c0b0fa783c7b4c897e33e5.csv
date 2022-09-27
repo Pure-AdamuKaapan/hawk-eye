@@ -1,2 +1,0 @@
-timestamp,node_name,UID,device_path,pod_name
-1662412120.0,ip-10-13-112-170.pwx.dev.purestorage.com,6441dfed-9989-4d74-abfd-0e5d3ae66995,/var/lib/kubelet/plugins/kubernetes.io/csi/pxd.portworx.com/fb7a950c5cc4988077f9656465ac58fc546cc96dd2792fedd3bbc32e0193ee19/globalmount,nginx-sharedv4-setupteardown-0-09-05-14h07m47s/nginx-6b5d97d5cb-vfp6l

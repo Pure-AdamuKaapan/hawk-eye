@@ -2,5 +2,14 @@ logfile,pattern,filename
 docker.out,Started px with pid (?P<pid>\d+),table_973304ca55b3413566c64d95da1208fb8a4879040e7fdae7f8465572caa19606.csv
 docker.out,"failed to setup internal kvdb: (?P<error_msg>[^""]+)",table_bd5a4185d2c2d9ff118e0fd07dbe587426705bbeac71bbef82f844c3a3d9c9b5.csv
 docker.out,"csi.NodePublishVolume request received. VolumeID: (?P<vol_id>\d+), TargetPath: (?P<target_path>\S+)",table_855d5500c4d4597a688b4ddbb81272e20fc4630c0d8727ec82ca7849dd387b12.csv
-kubelet.out,"MountVolume.MountDevice succeeded for volume (\S+) .*UID\: \\""(?P<UID>[\w\-]+).* device mount path \\""(?P<device_path>\S+)\\""\"".* pod=\""(?P<pod_name>\S+)\""",table_fb139d2208ee87cb75076fdb15e09ef87c58a9bdc3c0b0fa783c7b4c897e33e5.csv
+kubelet.out,"MountVolume.MountDevice succeeded for volume \\""(?P<pv_name>\S+)\\"" .*UID\: \\""(?P<UID>[\w\-]+).* device mount path \\""(?P<device_path>\S+)\\""\"".* pod=\""(?P<pod_name>\S+)\""",table_1fe7a28925e8967658c591af15413e4c54171179e613ef9b463daa06cc94dc61.csv
 kubelet.out,"operationExecutor.VerifyControllerAttachedVolume started for volume.*UniqueName:.*\\""(?P<unique_name>\S+)\\"".*pod.*\\""(?P<pod_name>\S+)\\"".*\(UID: \\""(?P<UID>\S+)\\"".*pod=\""(?P<pod_full_name>\S+)\""",table_2ff45d4734ff41001f812cca6f02c1f4fe2295d6bc88ae9755bbf4499b8a9750.csv
+docker.out,Failed to find locally attached drive set: drive set not found,table_509790830617478078866f45bdf7635c184d62afeee99bfa907aafd5a81b5730.csv
+docker.out,Unable to start as a storage node: Limit for maximum storage nodes,table_a0a523f0cb96a404230441964c617b3e95bef026b048fc4ea8082526584aff33.csv
+docker.out,"Created drive (?P<drive_id>\S+)\""",table_df48f73aa824f5068a838b49065e29cd28d229c03fe28b3dffe80b6d9ac7cf48.csv
+docker.out,Successfully attached the Drive Set,table_52333046c91792bdd0265466fcc13eb51a9d2ae39a9671e372379d1d06f872c5.csv
+docker.out,Cloud driver provider indicated that node cannot contribute storage as: cannot create more drives as max count limit for drive sets reached.. Starting node as storage less.,table_5f9940b0d9ba6794d3694d5311ea343b7ff2fd942ba421a631aa975525e72817.csv
+docker.out,Bootstraping internal kvdb service.,table_3febb8d0a4162e0936e6f5b85e57badd20656846dfac149ddc7cc02b1c16f147.csv
+docker.out,initialized internal kvdb,table_d68680bfb8e2a65e8752fbbb3a292a8227300a4772e546db4d013995c01c0754.csv
+docker.out,Kvdb operating at maximum capacity. Not starting kvdb on this node.,table_2f4198e53377bcfd9fb1fab560073a59fe470f8657dd0273311fe9dfe4d381c1.csv
+kubelet.out,"MountVolume.SetUp failed for volume \""(?P<pv_name>\S+)\"" .*pod \""(?P<pod_name>\S+)\"" .*UID\: \""(?P<UID>[\w\-]+)\""",table_d3043b4ae27f9ba9811e5c0c4af7b11a01983fbe23c221341eea698bbcfba922.csv
