@@ -375,6 +375,15 @@ func GetEvents(path string, focusObj string) ([]*Event, error) {
 		event.StartUTC = time.Unix(int64(event.StartTime), 0).UTC().String()
 		event.EndUTC = time.Unix(int64(event.EndTime), 0).UTC().String()
 
+		// TODO: temp for demo to make events show up on the timeline
+		if event.StartTime == 0 {
+			event.StartTime = event.EndTime - 1
+		} else if event.EndTime == 0 {
+			event.EndTime = event.StartTime + 1
+		} else if event.StartTime == event.EndTime {
+			event.EndTime++
+		}
+
 		// shorten source names
 		for _, source := range event.EventSources {
 			if source.Kind == Pod {
