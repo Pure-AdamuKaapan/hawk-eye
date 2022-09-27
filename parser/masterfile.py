@@ -67,6 +67,7 @@ class MasterFile:
         LogLine("""failed to setup internal kvdb: (?P<error_msg>[^"]+)""", ["error_msg"], PX_LOG),
         #Sep 05 15:11:40 ip-10-13-112-170.pwx.dev.purestorage.com portworx[1300]: time="2022-09-05T15:11:40Z" level=info msg="csi.NodePublishVolume request received. VolumeID: 920849628428829313, TargetPath: /var/lib/kubelet/pods/5a21d20f-cacd-43fe-be3e-194c34c673cd/volumes/kubernetes.io~csi/pvc-0d81053d-6952-404d-b213-2adea82bc609/mount" component=csi-driver correlation-id=b150fe93-d7ca-4293-9e55-9bc4fef2adf3 origin=csi-driver
         LogLine("""csi.NodePublishVolume request received. VolumeID: (?P<vol_id>\d+), TargetPath: (?P<target_path>\S+)""", ["vol_id", "target_path"], PX_LOG),
+        #################################### kubelet.out #####################################
         #Sep 05 14:08:40 ip-10-13-112-170.pwx.dev.purestorage.com k3s[6839]: I0905 14:08:40.126274   6839 operation_generator.go:658] "MountVolume.MountDevice succeeded for volume \"pvc-251d77bd-f5ac-4c82-9aca-f767058167e4\" (UniqueName: \"kubernetes.io/csi/pxd.portworx.com^555410506377584416\") pod \"nginx-6b5d97d5cb-vfp6l\" (UID: \"6441dfed-9989-4d74-abfd-0e5d3ae66995\") device mount path \"/var/lib/kubelet/plugins/   kubernetes.io/csi/pxd.portworx.com/fb7a950c5cc4988077f9656465ac58fc546cc96dd2792fedd3bbc32e0193ee19/globalmount\"" pod="nginx-sharedv4-setupteardown-0-09-05-14h07m47s/nginx-6b5d97d5cb-vfp6l"
         LogLine("""MountVolume.MountDevice succeeded for volume (\S+) .*UID\: \\\\\"(?P<UID>[\w\-]+).* device mount path \\\\\"(?P<device_path>\S+)\\\\\"\\\".* pod=\\\"(?P<pod_name>\S+)\\\"""", [], KUBECTL_LOG),
         #LogLine('operationExecutor.VerifyControllerAttachedVolume started for volume.*UniqueName:.*\\\\\"(?P<unique_name>\S+)\\\\\".*pod.*\\\\\"(?P<pod_name>\S+)\\\\\".*\(UID: \\\\\"(?P<UID>\S+)\\\\\".*pod=\\\"(?P<pod_full_name>\S+)\\\"',[], KUBECTL_LOG),
@@ -78,11 +79,13 @@ class MasterFile:
     def check_if_exists(self, line):
         for idx, logline_obj in enumerate(self.patterns):
             m = re.findall(logline_obj.pattern, line)
+            '''
             if "operationExecutor.VerifyControllerAttachedVolume" in line and "operationExecutor.VerifyControllerAttachedVolume" in logline_obj.pattern:
                 print(line)
                 print(logline_obj.pattern)
                 print(m)
                 print("_____")
+            '''
             if len(m) != 0:
                 self.patterns[idx].found_a_pattern(line)
 
@@ -91,7 +94,7 @@ class MasterFile:
         #Creating db files
         index = LogLine("", [], "")
         for logline_obj in self.patterns:
-            print(logline_obj.pattern)
+            #print(logline_obj.pattern)
             if len(logline_obj.df) == 0:
                 continue
             filename = logline_obj.get_table_name()
