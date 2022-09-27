@@ -351,6 +351,15 @@ func GetEvents(path string, focusObj string) ([]*Event, error) {
 				source.ShortName = source.Name
 			}
 		}
+
+		// add portworx as a source for PX Down events
+		if event.Name == pxDownEvent {
+			event.EventSources = append(event.EventSources, &EventSource{
+				Name:      "Portworx",
+				Kind:      "Portworx",
+				ShortName: "Portworx",
+			})
+		}
 	}
 	return events, nil
 }
