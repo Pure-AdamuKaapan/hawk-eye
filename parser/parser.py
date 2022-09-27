@@ -11,7 +11,7 @@ class Parser:
         if not os.path.exists(self.DB_DIR):
             os.mkdir(self.DB_DIR, 0o777)
         self.master = masterfile.MasterFile(self.DB_DIR)
-    
+
     def start(self):
         files_to_parse = []
         for path, subdirs, files in os.walk(self.ROOT_DIR):
@@ -23,9 +23,9 @@ class Parser:
         for logfile in files_to_parse:
             for line in open(logfile, "r"):
                 self.master.check_if_exists(line)
-        self.master.save_db_files()        
+        self.master.save_db_files()
 
-        
+
 def main():
     if len(sys.argv) != 2:
         print("Error: Specify the directory to parse")
@@ -33,8 +33,8 @@ def main():
     root_dir = sys.argv[1]
     parser = Parser(root_dir)
     parser.start()
-    
-    
+
+
 
 if __name__ == "__main__":
     main()

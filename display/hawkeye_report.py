@@ -1,17 +1,8 @@
 import sys
+import os
+import shutil
 
 class Report:
-    cluster_files = {
-        "pxctl status" : "px-status.out",
-        "Bootstrap entries" : "px-boostrap-list.out",
-        "PX volumes" : 'px-volumes.out'
-        }
-    node_files = {
-        "lsblk" : "lsblk.out",
-        "PX version": "px-version.out",
-        "System restarts" : "last.out",
-        "Node name" : "uname.out"
-        }
 
     part2 = """<div data-role="collapsible">
       <h1>Node1</h1>
@@ -22,7 +13,7 @@ class Report:
         self.read_dir = read_dir
 
 
-    def get_command(self, title, content):
+    def get_command_html(self, title, content):
         return """<div data-role="collapsible">
         <h1>""" + title + """</h1>
         <pre>""" + content + """</pre>
@@ -54,6 +45,8 @@ class Report:
             \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
                 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
                     \\\\\\\\\\\\\\\\\\\\\\\\\\\\
+            |||||||||||||||||||||||||||||||||||
+            |||||||||||||||||||||||||||||||||||
                         </pre>
     """
 
@@ -68,16 +61,63 @@ class Report:
             "Recommendation 1": "More details",
             "Recommendation 2": "More details"}
 
+    def get_cluster_command_output(self):
+        cluster_files = {
+            "pxctl status" : "px-status.out",
+            "Bootstrap entries" : "px-boostrap-list.out",
+            #"PX volumes" : 'px-volumes.out'
+            }
+        files_to_parse = {}
+        for path, subdirs, files in os.walk(self.read_dir):
+            for name in files:
+                for key, value in cluster_files.items():
+                    if name.endswith(value):
+                        filename = os.path.join(path, name)
+                        files_to_parse[key] = filename
+        result = ""
+        for key, value in files_to_parse.items():
+            content = open(value, "r").read()
+            result += self.get_command_html(key, content)
+        return result
+
+    def get_nodes_command_output(self):
+        node_files = {
+            "Node name" : "uname.out",
+            "PX version": "px-version.out",
+            "lsblk" : "lsblk.out",
+            "System restarts" : "last.out",
+            }
+        result = {}
+        hostnames = {}
+        for path, subdirs, files in os.walk(self.read_dir):
+            for name in files:
+                for key, value in node_files.items():
+                    if name.endswith(value):
+                        filename = os.path.join(path, name)
+                        f = open(filename, "r")
+                        content = f.read()
+                        f.close()
+                        html = self.get_command_html(key, content)
+                        dict_content = result.get(path, "")
+                        dict_content += html
+                        result[path] = dict_content
+                        if name.endswith("uname.out"):
+                            s = content.split()
+                            hostnames[path] = s[1]
+
+        output = []
+        for key, value in result.items():
+            output.append([hostnames[key], value])
+        return output
+
     def get_information_section(self):
         content = ""
-        command_collapse = ""
-        command_collapse += self.get_command("pxctl status", "pxctl status output")
-        command_collapse += self.get_command("Bootstrap entries", " bootstrap output")
+        command_collapse = self.get_cluster_command_output()
         content += self.get_single_node("Cluster", command_collapse)
-        command_collapse = ""
-        command_collapse += self.get_command("lsblk", "lsblk output")
-        command_collapse += self.get_command("blkid", "lsblk output")
-        content += self.get_single_node("Node1", command_collapse)
+        command_collapse =""
+        cmds = self.get_nodes_command_output()
+        for each in cmds:
+             content += self.get_single_node(each[0], each[1])
         return self.get_section("Information", content)
 
     def get_timeline_section(self):
@@ -91,12 +131,12 @@ class Report:
         command_collapse = ""
         must_fix = self.get_must_fix()
         for key in must_fix.keys():
-            command_collapse += self.get_command(key, must_fix[key])
+            command_collapse += self.get_command_html(key, must_fix[key])
         content += self.get_single_node("Must-fix", command_collapse)
         command_collapse = ""
         reco = self.get_recommended_fix()
         for key in reco.keys():
-            command_collapse += self.get_command(key, reco[key])
+            command_collapse += self.get_command_html(key, reco[key])
         content += self.get_single_node("Recommended fixes", command_collapse)
         return self.get_section("Finterprints", content)
 
@@ -108,10 +148,40 @@ class Report:
     <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        <style>
+      .container {
+        display: flex;
+        align-items: right;
+        justify-content: right
+      }
+      img {
+        max-width: 100%
+      }
+      .image {
+        flex-basis: 70%;
+        order: 1;
+      }
+      .text {
+        color: #89CFF0;
+        padding-right: 20px;
+        font: italic 30px "Fira Sans", serif;
+      }
+    </style>
+
     </head>
     <body>
 
+
+
     <div data-role="page" id="pageone">
+    <div class="container">
+      <div class="text">
+        <h1>Hawk-Eye</h1>
+      </div>
+      <div class="image">
+        <img src="logo.jpeg">
+      </div>
+    </div>
     """
         page_end = """</div>
 
@@ -128,7 +198,13 @@ def main():
         exit(1)
     root_dir = sys.argv[1]
     parser = Report(root_dir)
-    print(parser.get_page())
+    html = parser.get_page()
+    f = open(os.path.join(root_dir, "index.html"), "w")
+    f.write(html)
+    f.close()
+    src = "./logo.jpeg"
+    shutil.copyfile(src, os.path.join(root_dir, "logo.jpeg"))
+
 
 
 
