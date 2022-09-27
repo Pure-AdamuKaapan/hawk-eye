@@ -72,6 +72,30 @@ class MasterFile:
         LogLine("""MountVolume.MountDevice succeeded for volume (\S+) .*UID\: \\\\\"(?P<UID>[\w\-]+).* device mount path \\\\\"(?P<device_path>\S+)\\\\\"\\\".* pod=\\\"(?P<pod_name>\S+)\\\"""", [], KUBECTL_LOG),
         #LogLine('operationExecutor.VerifyControllerAttachedVolume started for volume.*UniqueName:.*\\\\\"(?P<unique_name>\S+)\\\\\".*pod.*\\\\\"(?P<pod_name>\S+)\\\\\".*\(UID: \\\\\"(?P<UID>\S+)\\\\\".*pod=\\\"(?P<pod_full_name>\S+)\\\"',[], KUBECTL_LOG),
         LogLine('operationExecutor.VerifyControllerAttachedVolume started for volume.*UniqueName:.*\\\\\"(?P<unique_name>\S+)\\\\\".*pod.*\\\\\"(?P<pod_name>\S+)\\\\\".*\(UID: \\\\\"(?P<UID>\S+)\\\\\".*pod=\\\"(?P<pod_full_name>\S+)\\\"',[], KUBECTL_LOG),
+
+        # Clouddrive Logs
+        #Sep 27 03:40:36 ip-192-168-85-22.ec2.internal portworx[28442]: time="2022-09-27T03:40:36Z" level=warning msg="Failed to find locally attached drive set: drive set not found" file="clouddrive.go:141" component=porx/px/config/identity
+        LogLine("""Failed to find locally attached drive set: drive set not found""", [], PX_LOG),
+        #Sep 27 03:40:37 ip-192-168-85-22.ec2.internal portworx[28442]: time="2022-09-27T03:40:37Z" level=warning msg="Unable to start as a storage node: Limit for maximum storage nodes (1) in the zone (us-east-1c) reached" file="cloud_drive.go:1633" component=porx/storage/hal/provider
+        LogLine("""Unable to start as a storage node: Limit for maximum storage nodes""", [], PX_LOG),
+        #Sep 27 03:40:37 ip-192-168-11-60.ec2.internal portworx[28922]: time="2022-09-27T03:40:37Z" level=info msg="Created drive vol-028b1ebe6572d7322" file="aws_storage.go:310" component=porx/storage/hal/provider/aws
+        LogLine("""Created drive (?P<drive_id>\S+)\\\"""", ["drive_id"], PX_LOG),
+        #Sep 27 03:40:42 ip-192-168-11-60.ec2.internal portworx[28922]: time="2022-09-27T03:40:42Z" level=info msg="Successfully attached the Drive Set" file="cloud_drive.go:2463" component=porx/storage/hal/provider
+        LogLine("""Successfully attached the Drive Set""", [], PX_LOG),
+        #Sep 27 03:40:38 ip-192-168-85-22.ec2.internal portworx[28442]: time="2022-09-27T03:40:38Z" level=info msg="Cloud driver provider indicated that node cannot contribute storage as: cannot create more drives as max count limit for drive sets reached.. Starting node as storage less." file="clouddrive.go:209" component=porx/px/config/identity
+        LogLine("""Cloud driver provider indicated that node cannot contribute storage as: cannot create more drives as max count limit for drive sets reached.. Starting node as storage less.""", [], PX_LOG),
+
+        # KVDB Logs
+        #Sep 27 06:08:35 ip-192-168-11-60.ec2.internal portworx[4245]: time="2022-09-27T06:08:35Z" level=info msg="Bootstraping internal kvdb service." file="kvstore.go:156" component=porx/px/kvstore fn=kv-store.New id=16a99325-4507-431b-b3cc-f01f7f819f96
+        LogLine("""Bootstraping internal kvdb service.""", [], PX_LOG),
+        #Sep 27 16:12:09 ip-192-168-93-84.ec2.internal portworx[6902]: time="2022-09-27T16:12:09Z" level=info msg="initialized internal kvdb" file="boot.go:772" component=porx/px/boot fields.func=init func= package=boot
+        LogLine("""initialized internal kvdb""", [], PX_LOG),
+        #Sep 27 06:08:39 ip-192-168-85-22.ec2.internal portworx[22149]: time="2022-09-27T06:08:39Z" level=info msg="Kvdb rule storage-rule instructed to not proceed with provisioning: Storage less node detected. Node cannot act as a kvdb node. Waiting for other nodes to start kvdb. To start kvdb on this storage less node, label this node as a metadata node and restart Portworx." file="kvprovision.go:339" component=porx/px/kvstore fn=kvdb-provisioner.CanProvisionKvdb id=7250b84e-bd3b-4a64-9b48-20b1233efaa2
+        LogLine("""Kvdb rule storage-rule instructed to not proceed with provisioning: : Storage less node detected""", [], PX_LOG),
+        #Sep 27 06:09:15 ip-192-168-85-22.ec2.internal portworx[22149]: time="2022-09-27T06:09:15Z" level=info msg="Kvdb operating at maximum capacity. Not starting kvdb on this node." file="kvlistener.go:176" component=porx/px/kvstore fn=kv-listener.JoinComplete id=7250b84e-bd3b-4a64-9b48-20b1233efaa2
+        LogLine("""Kvdb operating at maximum capacity. Not starting kvdb on this node.""", [], PX_LOG),
+        #Sep 27 06:08:36 ip-192-168-11-60.ec2.internal portworx[4245]: time="2022-09-27T06:08:36Z" level=info msg="Mounting kvdb device /dev/nvme2n1 at /var/.px_kvdb" file="util.go:41" component=porx/px/kvstore/datadir
+        LogLine(""" Mounting kvdb device""", [], PX_LOG),
     ]
     def __init__(self, db_dir):
         self.DB_DIR = db_dir
