@@ -20,3 +20,25 @@ The main output of hawk-eye is a Hawk-Eye Report. It consists of 3 sections
 
 
 ### Hawk-Eye Live:
+
+# Building and Running
+
+## Parse diags to build the database
+```
+$ python3 parser/parser.py test_data/PWX-26783
+```
+
+## Build the go binary used to generate events
+```
+$ go build
+```
+
+## Generate events for a focus object (in this case a pod), the second param is the directory where the database was created
+```
+$ ./hawk-eye events --focus=0454503f-4399-46fc-ac26-7ada4ecaaa70 test_data/PWX-26783/database | jq '.'  > events.out
+```
+
+## Pass events through the grapher to generate a Gantt chart
+```
+$ TBD
+```
