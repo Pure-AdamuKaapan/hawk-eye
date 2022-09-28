@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        <style>
+      .container {
+        display: flex;
+        align-items: right;
+        justify-content: right
+      }
+      img {
+        max-width: 100%
+      }
+      .image {
+        flex-basis: 70%;
+        order: 1;
+      }
+      .text {
+        color: #89CFF0;
+        padding-right: 20px;
+        font: italic 30px "Fira Sans", serif;
+      }
+    </style>
+
+    </head>
+    <body>
+
+
+
+    <div data-role="page" id="pageone">
+    <div class="container">
+      <div class="text">
+        <h1>Hawk-Eye</h1>
+      </div>
+      <div class="image">
+        <img src="logo.jpeg">
+      </div>
+    </div>
+    <div data-role="header">
+        <h1>Information</h1>
+      </div>
+
+      <div data-role="main" class="ui-content">    <div data-role="collapsible">
+      <h1>Cluster</h1>
+        </div>
+            <div data-role="collapsible">
+      <h1>ip-192-168-18-191.ec2.internal</h1><div data-role="collapsible">
+        <h1>Node name</h1>
+        <pre>Linux ip-192-168-18-191.ec2.internal 5.4.209-116.367.amzn2.x86_64 #1 SMP Wed Aug 31 00:09:52 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
+</pre>
+      </div><div data-role="collapsible">
+        <h1>lsblk</h1>
+        <pre>NAME          MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+nvme0n1       259:0    0   80G  0 disk 
+|-nvme0n1p1   259:1    0   80G  0 part /
+`-nvme0n1p128 259:2    0    1M  0 part 
+nvme1n1       259:3    0  150G  0 disk 
+nvme2n1       259:4    0  150G  0 disk 
+</pre>
+      </div>
+        </div>
+            <div data-role="collapsible">
+      <h1>ip-192-168-82-121.ec2.internal</h1><div data-role="collapsible">
+        <h1>Node name</h1>
+        <pre>Linux ip-192-168-82-121.ec2.internal 5.4.209-116.367.amzn2.x86_64 #1 SMP Wed Aug 31 00:09:52 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
+</pre>
+      </div><div data-role="collapsible">
+        <h1>lsblk</h1>
+        <pre>NAME          MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+nvme0n1       259:0    0   80G  0 disk 
+|-nvme0n1p1   259:1    0   80G  0 part /
+`-nvme0n1p128 259:2    0    1M  0 part 
+nvme1n1       259:3    0  150G  0 disk 
+nvme2n1       259:4    0  150G  0 disk 
+</pre>
+      </div>
+        </div>
+            <div data-role="collapsible">
+      <h1>ip-192-168-51-87.ec2.internal</h1><div data-role="collapsible">
+        <h1>Node name</h1>
+        <pre>Linux ip-192-168-51-87.ec2.internal 5.4.209-116.367.amzn2.x86_64 #1 SMP Wed Aug 31 00:09:52 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
+</pre>
+      </div><div data-role="collapsible">
+        <h1>lsblk</h1>
+        <pre>NAME          MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+nvme0n1       259:0    0   80G  0 disk 
+|-nvme0n1p1   259:1    0   80G  0 part /
+`-nvme0n1p128 259:2    0    1M  0 part 
+nvme1n1       259:3    0  150G  0 disk 
+nvme2n1       259:4    0  150G  0 disk 
+</pre>
+      </div>
+        </div>
+            <div data-role="collapsible">
+      <h1>ip-192-168-20-4.ec2.internal</h1><div data-role="collapsible">
+        <h1>Node name</h1>
+        <pre>Linux ip-192-168-20-4.ec2.internal 5.4.209-116.367.amzn2.x86_64 #1 SMP Wed Aug 31 00:09:52 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
+</pre>
+      </div><div data-role="collapsible">
+        <h1>lsblk</h1>
+        <pre>NAME          MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+nvme0n1       259:0    0   80G  0 disk 
+|-nvme0n1p1   259:1    0   80G  0 part /
+`-nvme0n1p128 259:2    0    1M  0 part 
+nvme1n1       259:3    0  150G  0 disk 
+</pre>
+      </div>
+        </div>
+            <div data-role="collapsible">
+      <h1>ip-192-168-91-7.ec2.internal</h1><div data-role="collapsible">
+        <h1>Node name</h1>
+        <pre>Linux ip-192-168-91-7.ec2.internal 5.4.209-116.367.amzn2.x86_64 #1 SMP Wed Aug 31 00:09:52 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
+</pre>
+      </div><div data-role="collapsible">
+        <h1>lsblk</h1>
+        <pre>NAME          MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+nvme0n1       259:0    0   80G  0 disk 
+|-nvme0n1p1   259:1    0   80G  0 part /
+`-nvme0n1p128 259:2    0    1M  0 part 
+nvme1n1       259:3    0  150G  0 disk 
+</pre>
+      </div>
+        </div>
+            <div data-role="collapsible">
+      <h1>ip-192-168-51-111.ec2.internal</h1><div data-role="collapsible">
+        <h1>Node name</h1>
+        <pre>Linux ip-192-168-51-111.ec2.internal 5.4.209-116.367.amzn2.x86_64 #1 SMP Wed Aug 31 00:09:52 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
+</pre>
+      </div><div data-role="collapsible">
+        <h1>lsblk</h1>
+        <pre>NAME          MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
+nvme0n1       259:0    0  80G  0 disk 
+|-nvme0n1p1   259:1    0  80G  0 part /
+`-nvme0n1p128 259:2    0   1M  0 part 
+</pre>
+      </div>
+        </div>
+        </div><div data-role="header">
+        <h1>Timeline</h1>
+      </div>
+
+      <div data-role="main" class="ui-content">    <div data-role="collapsible">
+      <h1>Volume Timeline</h1><pre>
+            ||||||||||||||||||||||||||||||||||
+            ||||||||||||||||||||||||||||||||||
+            \\\\\\\\\\\\\\\\\
+                \\\\\\\\\\\\\\\\
+                    \\\\\\\\\\\\\\
+            |||||||||||||||||||||||||||||||||||
+            |||||||||||||||||||||||||||||||||||
+                        </pre>
+    
+        </div>
+            <div data-role="collapsible">
+      <h1>Another Timeline</h1>
+        </div>
+        </div><div data-role="header">
+        <h1>Fingerprints</h1>
+      </div>
+
+      <div data-role="main" class="ui-content">    <div data-role="collapsible">
+      <h1>Know Issues</h1><div data-role="collapsible">
+        <h1>Must fix 1</h1>
+        <pre>More details</pre>
+      </div><div data-role="collapsible">
+        <h1>Must fix 2</h1>
+        <pre>More details</pre>
+      </div>
+        </div>
+            <div data-role="collapsible">
+      <h1>Recommended fixes</h1><div data-role="collapsible">
+        <h1>Recommendation 1</h1>
+        <pre>More details</pre>
+      </div><div data-role="collapsible">
+        <h1>Recommendation 2</h1>
+        <pre>More details</pre>
+      </div>
+        </div>
+        </div></div>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+Status: [32mPX is operational[0m
+Telemetry: [33mDisabled or Unhealthy[0m
+Metering: [32mHealthy[0m
+License: [91mPX-Essential (ERROR: License is expired, Another cluster registered with the same userID. Unlink the previously registered cluster on PX-Central.)[0m
+Node ID: 9a6378b7-7caf-474d-81bc-14c8ef4eb51f
+	IP: 192.168.51.87 
+ 	Local Storage Pool: 1 pool
+[0m	POOL	IO_PRIORITY	RAID_LEVEL	USABLE	USED	STATUS	ZONE		REGION[0m
+[32m	0	HIGH		raid0		150 GiB	7.5 GiB	Online	us-east-1b	us-east-1[0m
+[0m	Local Storage Devices: 1 device[0m
+[0m	Device	Path		Media Type		Size		Last-Scan[0m
+[32m	0:1	/dev/nvme1n1	STORAGE_MEDIUM_NVME	150 GiB		28 Sep 22 05:13 UTC[0m
+[32m	total			-			150 GiB[0m
+[0m	Cache Devices:[0m
+[0m	 * No cache devices[0m
+[0m	Kvdb Device:[0m
+[0m	Device Path	Size[0m
+[32m	/dev/nvme2n1	150 GiB[0m
+[0m	 * Internal kvdb on this node is using this dedicated kvdb device to store its data.[0m
+[0mCluster Summary[0m
+[0m	Cluster ID: px-cluster-63b62bdd-3485-435b-9ab8-8e715a65c465[0m
+[0m	Cluster UUID: 20fc20be-77c9-4c14-bed8-892ee7974469[0m
+[0m	Scheduler: kubernetes[0m
+[0m	Nodes: 5 node(s) with storage (5 online)[0m
+[0m	IP		ID					SchedulerNodeName		Auth		StorageNode	Used	Capacity	Status	StorageStatus	Version		Kernel				OS[0m
+[32m	192.168.82.121	ed89eb5f-1b91-43cf-a171-c906a40a799b	ip-192-168-82-121.ec2.internal	Disabled	Yes		7.5 GiB	150 GiB		Online	Up		2.11.4-96ccc8b	5.4.209-116.367.amzn2.x86_64	Amazon Linux 2[0m
+[32m	192.168.51.87	9a6378b7-7caf-474d-81bc-14c8ef4eb51f	ip-192-168-51-87.ec2.internal	Disabled	Yes		7.5 GiB	150 GiB		Online	Up (This node)	2.11.4-96ccc8b	5.4.209-116.367.amzn2.x86_64	Amazon Linux 2[0m
+[32m	192.168.20.4	386dd1b8-9064-48c4-adf8-edf61b8ca15c	ip-192-168-20-4.ec2.internal	Disabled	Yes		7.5 GiB	150 GiB		Online	Up		2.11.4-96ccc8b	5.4.209-116.367.amzn2.x86_64	Amazon Linux 2[0m
+[32m	192.168.91.7	2f9ab2f6-4aa1-4fa2-9d4c-3994f8723951	ip-192-168-91-7.ec2.internal	Disabled	Yes		7.5 GiB	150 GiB		Online	Up		2.11.4-96ccc8b	5.4.209-116.367.amzn2.x86_64	Amazon Linux 2[0m
+[32m	192.168.18.191	17f392d7-342a-48fb-850f-06a8b7515ed0	ip-192-168-18-191.ec2.internal	Disabled	Yes		7.5 GiB	150 GiB		Online	Up		2.11.4-96ccc8b	5.4.209-116.367.amzn2.x86_64	Amazon Linux 2[0m
+[0mGlobal Storage Pool
+	Total Used    	:  38 GiB
+	Total Capacity	:  750 GiB

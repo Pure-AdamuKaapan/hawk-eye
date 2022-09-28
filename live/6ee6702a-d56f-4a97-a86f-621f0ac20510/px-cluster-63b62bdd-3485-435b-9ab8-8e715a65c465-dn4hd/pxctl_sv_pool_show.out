@@ -1,0 +1,7 @@
+[31mPX is not running on 127.0.0.1 host: Could not reach 'HealthMonitor'[0m
+[30;1m
+List of last known failures:
+
+[0m[4;1mType	ID			Resource				Severity	Count	LastSeen			FirstSeen			Description																								
+[0m[31mNODE	ClusterManagerFailure	c9ae5b5a-fa3f-43ea-884f-9aae4d04dee7	ALARM		1	Sep 28 05:13:31 UTC 2022	Sep 28 05:13:31 UTC 2022	Failed to start cluster manager on node [192.168.51.111]: Unable to add a NEW node as cluster is operating at maximum capacity (5 nodes). Please remove a node before attempting to add a new node.	
+[0m

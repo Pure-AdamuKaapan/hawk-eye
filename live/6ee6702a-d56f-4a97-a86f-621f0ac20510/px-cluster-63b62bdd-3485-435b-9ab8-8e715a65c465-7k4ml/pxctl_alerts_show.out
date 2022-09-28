@@ -1,0 +1,17 @@
+[4;1mType	ID			Resource				Severity	Count	LastSeen			FirstSeen			Description																								
+[0m[31mNODE	NodeStateChange		17f392d7-342a-48fb-850f-06a8b7515ed0	ALARM		1	Sep 28 05:13:07 UTC 2022	Sep 28 05:13:07 UTC 2022	Node is not in quorum. Waiting to connect to peer nodes on port 9002. Ensure port 9002 is not blocked.													
+[0m[31mNODE	NodeStateChange		9a6378b7-7caf-474d-81bc-14c8ef4eb51f	ALARM		1	Sep 28 05:13:21 UTC 2022	Sep 28 05:13:21 UTC 2022	Node is not in quorum. Waiting to connect to peer nodes on port 9002. Ensure port 9002 is not blocked.													
+[0m[31mNODE	NodeStateChange		386dd1b8-9064-48c4-adf8-edf61b8ca15c	ALARM		1	Sep 28 05:13:23 UTC 2022	Sep 28 05:13:23 UTC 2022	Node is not in quorum. Waiting to connect to peer nodes on port 9002. Ensure port 9002 is not blocked.													
+[0m[31mNODE	NodeStateChange		ed89eb5f-1b91-43cf-a171-c906a40a799b	ALARM		1	Sep 28 05:13:24 UTC 2022	Sep 28 05:13:24 UTC 2022	Node is not in quorum. Waiting to connect to peer nodes on port 9002. Ensure port 9002 is not blocked.													
+[0m[31mNODE	NodeStateChange		2f9ab2f6-4aa1-4fa2-9d4c-3994f8723951	ALARM		1	Sep 28 05:13:26 UTC 2022	Sep 28 05:13:26 UTC 2022	Node is not in quorum. Waiting to connect to peer nodes on port 9002. Ensure port 9002 is not blocked.													
+[0m[32mNODE	NodeStartSuccess	17f392d7-342a-48fb-850f-06a8b7515ed0	NOTIFY		1	Sep 28 05:13:30 UTC 2022	Sep 28 05:13:30 UTC 2022	PX is ready on this node																						
+[0m[31mNODE	ClusterManagerFailure	c9ae5b5a-fa3f-43ea-884f-9aae4d04dee7	ALARM		1	Sep 28 05:13:31 UTC 2022	Sep 28 05:13:31 UTC 2022	Failed to start cluster manager on node [192.168.51.111]: Unable to add a NEW node as cluster is operating at maximum capacity (5 nodes). Please remove a node before attempting to add a new node.	
+[0m[32mNODE	NodeStartSuccess	9a6378b7-7caf-474d-81bc-14c8ef4eb51f	NOTIFY		1	Sep 28 05:13:57 UTC 2022	Sep 28 05:13:57 UTC 2022	PX is ready on this node																						
+[0m[32mNODE	NodeStartSuccess	386dd1b8-9064-48c4-adf8-edf61b8ca15c	NOTIFY		1	Sep 28 05:14:03 UTC 2022	Sep 28 05:14:03 UTC 2022	PX is ready on this node																						
+[0m[32mNODE	NodeStartSuccess	ed89eb5f-1b91-43cf-a171-c906a40a799b	NOTIFY		1	Sep 28 05:14:27 UTC 2022	Sep 28 05:14:27 UTC 2022	PX is ready on this node																						
+[0m[32mNODE	NodeStartSuccess	2f9ab2f6-4aa1-4fa2-9d4c-3994f8723951	NOTIFY		1	Sep 28 05:14:34 UTC 2022	Sep 28 05:14:34 UTC 2022	PX is ready on this node																						
+[0m[33mCLUSTER	MeteringAgentWarning						WARN		1	Sep 28 06:13:45 UTC 2022	Sep 28 06:13:45 UTC 2022	Unable to reach to billing server: Cannot send metric to the billing endpoint: Cannot send metric to the billing endpoint: Response Code: 500, error in sending metering information, Err: {"message":"cannot register usage, Err: cannot register new cluster, all available essentials licenses exhausted for user 74b6a08c-e439-11eb-8b5b-4ef4c7a81109","code":500}
+	
+[0m[31mCLUSTER	MeteringAgentCritical		ALARM	2	Sep 28 07:14:01 UTC 2022	Sep 28 05:13:28 UTC 2022	Unable to reach to billing server: Cannot send metric to the billing endpoint: Cannot send metric to the billing endpoint: Response Code: 500, error in sending metering information, Err: {"message":"cannot register usage, Err: cannot register new cluster, all available essentials licenses exhausted for user 74b6a08c-e439-11eb-8b5b-4ef4c7a81109","code":500}
+	
+[0m
