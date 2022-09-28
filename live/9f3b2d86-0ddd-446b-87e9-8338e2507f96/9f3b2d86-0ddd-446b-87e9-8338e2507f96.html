@@ -82,37 +82,20 @@ Node ID: 9a6378b7-7caf-474d-81bc-14c8ef4eb51f
 </pre>
       </div><div data-role="collapsible">
         <h1>pxctl cd list-drives</h1>
-        <pre>Error: Subcommand is missing or invalid. This command requires a valid sub-command.
-Usage:
-  pxctl clouddrive [flags]
-  pxctl clouddrive [command]
-
-Aliases:
-  clouddrive, cd
-
-Available Commands:
-  inspect       Inspect and view all the drives of a DriveSet
-  list          List all the cloud drives currently being used
-  list-drives   List all the cloud drives currently being used
-  transfer      Transfers the cloud drive set from given source node to a destination node
-  update-labels Updates the labels on the drive set for the provided node.
-
-Flags:
-  -h, --help   help for clouddrive
-
-Global Flags:
-      --ca string            path to root certificate for ssl usage
-      --cert string          path to client certificate for ssl usage
-      --color                output with color coding
-      --config string        config file (default is $HOME/.pxctl.yaml)
-      --context string       context name that overrides the current auth context
-  -j, --json                 output in json
-      --key string           path to client key for ssl usage
-      --output-type string   use "wide" to show more details
-      --raw                  raw CLI output for instrumentation
-      --ssl                  ssl enabled for portworx
-
-Use "pxctl clouddrive [command] --help" for more information about a command.
+        <pre>[4;1mCloud Drives Summary[0m
+[4;1m
+Total number of drives: 8[0m
+[4;1m
+Drive List[0m
+[37m	Drive ID		NodeID					Zone		Labels	[0m
+[37m	vol-000305374238cf22a	9a6378b7-7caf-474d-81bc-14c8ef4eb51f	us-east-1b	-[0m
+[37m	vol-08f00bd8e14c2c558	9a6378b7-7caf-474d-81bc-14c8ef4eb51f	us-east-1b	-[0m
+[37m	vol-0413014eca3b2e85f	ed89eb5f-1b91-43cf-a171-c906a40a799b	us-east-1c	-[0m
+[37m	vol-051fa18c3f2565304	ed89eb5f-1b91-43cf-a171-c906a40a799b	us-east-1c	-[0m
+[37m	vol-0eaac95e300a128d4	17f392d7-342a-48fb-850f-06a8b7515ed0	us-east-1a	-[0m
+[37m	vol-0ead7a2fdf768a4f9	17f392d7-342a-48fb-850f-06a8b7515ed0	us-east-1a	-[0m
+[37m	vol-0fc326e672d4a2f38	2f9ab2f6-4aa1-4fa2-9d4c-3994f8723951	us-east-1c	-[0m
+[37m	vol-060140db7fa5d4432	386dd1b8-9064-48c4-adf8-edf61b8ca15c	us-east-1a	-[0m
 
 </pre>
       </div><div data-role="collapsible">
@@ -131,16 +114,16 @@ Use "pxctl clouddrive [command] --help" for more information about a command.
 [0m[32mNODE	NodeStartSuccess	2f9ab2f6-4aa1-4fa2-9d4c-3994f8723951	NOTIFY		1	Sep 28 05:14:34 UTC 2022	Sep 28 05:14:34 UTC 2022	PX is ready on this node																						
 [0m[33mCLUSTER	MeteringAgentWarning						WARN		1	Sep 28 06:13:45 UTC 2022	Sep 28 06:13:45 UTC 2022	Unable to reach to billing server: Cannot send metric to the billing endpoint: Cannot send metric to the billing endpoint: Response Code: 500, error in sending metering information, Err: {"message":"cannot register usage, Err: cannot register new cluster, all available essentials licenses exhausted for user 74b6a08c-e439-11eb-8b5b-4ef4c7a81109","code":500}
 	
-[0m[31mCLUSTER	MeteringAgentCritical		ALARM	2	Sep 28 07:14:01 UTC 2022	Sep 28 05:13:28 UTC 2022	Unable to reach to billing server: Cannot send metric to the billing endpoint: Cannot send metric to the billing endpoint: Response Code: 500, error in sending metering information, Err: {"message":"cannot register usage, Err: cannot register new cluster, all available essentials licenses exhausted for user 74b6a08c-e439-11eb-8b5b-4ef4c7a81109","code":500}
+[0m[31mCLUSTER	MeteringAgentCritical		ALARM	3	Sep 28 08:14:17 UTC 2022	Sep 28 05:13:28 UTC 2022	Unable to reach to billing server: Cannot send metric to the billing endpoint: Cannot send metric to the billing endpoint: Response Code: 500, error in sending metering information, Err: {"message":"cannot register usage, Err: cannot register new cluster, all available essentials licenses exhausted for user 74b6a08c-e439-11eb-8b5b-4ef4c7a81109","code":500}
 	
 [0m</pre>
       </div><div data-role="collapsible">
         <h1>pxctl sv kvdb members</h1>
         <pre>Kvdb Cluster Members: 
 [4;1mID					PEER URLs				CLIENT URLs			LEADER	HEALTHY	DBSIZE[0m
+[37m17f392d7-342a-48fb-850f-06a8b7515ed0	[http://portworx-1.internal.kvdb:9018]	[http://192.168.18.191:9019]	true	true	532 KiB[0m
 [37m9a6378b7-7caf-474d-81bc-14c8ef4eb51f	[http://portworx-2.internal.kvdb:9018]	[http://192.168.51.87:9019]	false	true	520 KiB[0m
 [37med89eb5f-1b91-43cf-a171-c906a40a799b	[http://portworx-3.internal.kvdb:9018]	[http://192.168.82.121:9019]	false	true	524 KiB[0m
-[37m17f392d7-342a-48fb-850f-06a8b7515ed0	[http://portworx-1.internal.kvdb:9018]	[http://192.168.18.191:9019]	true	true	532 KiB[0m
 
 </pre>
       </div><div data-role="collapsible">
@@ -152,8 +135,11 @@ Use "pxctl clouddrive [command] --help" for more information about a command.
             <div data-role="collapsible">
       <h1>ip-192-168-18-191.ec2.internal</h1><div data-role="collapsible">
         <h1>blkid</h1>
-        <pre>blkid: invalid option -- 'f'
-Try 'blkid -h' for more information.
+        <pre>/dev/nvme0n1: PTUUID="88b9b632-8f96-41d2-8820-0d935e0d42cf" PTTYPE="gpt"
+/dev/nvme0n1p1: LABEL="/" UUID="027092f5-b7f8-4b7a-8eb4-bb3417968c9b" TYPE="xfs" PARTLABEL="Linux" PARTUUID="5da2b78b-6e3b-4976-b2fa-087124118e4d"
+/dev/nvme0n1p128: PARTLABEL="BIOS Boot Partition" PARTUUID="b9688053-bffe-4385-948c-01e807d94ef4"
+/dev/nvme1n1: LABEL="pxpool=0,mdpoolid=0,initinprogress,mdvol" UUID="0964be4b-85b4-4d0f-8a15-4d51cc11c4b1" UUID_SUB="13a85571-5cac-4b38-b85a-1eb68f415f5f" TYPE="btrfs"
+/dev/nvme2n1: LABEL="kvdbvol" UUID="fd41f82c-adb1-42b2-863c-f3f2a51b8f6f" TYPE="xfs"
 </pre>
       </div><div data-role="collapsible">
         <h1>pxctl sv pool show</h1>
@@ -161,7 +147,7 @@ Try 'blkid -h' for more information.
 Pool ID: 0 
 	UUID:  8064eb26-52ea-43a9-9c1c-a024256c4abf 
 	IO Priority:  HIGH 
-	Labels:  eks.amazonaws.com/capacityType=ON_DEMAND,eks.amazonaws.com/nodegroup-image=ami-00cc7446b763f6466,beta.kubernetes.io/os=linux,kubernetes.io/hostname=ip-192-168-18-191.ec2.internal,failure-domain.beta.kubernetes.io/zone=us-east-1a,topology.portworx.io/zone=us-east-1a,eks.amazonaws.com/sourceLaunchTemplateVersion=1,alpha.eksctl.io/nodegroup-name=storage-nodes,kubernetes.io/os=linux,topology.kubernetes.io/region=us-east-1,beta.kubernetes.io/arch=amd64,medium=STORAGE_MEDIUM_NVME,failure-domain.beta.kubernetes.io/region=us-east-1,topology.kubernetes.io/zone=us-east-1a,beta.kubernetes.io/instance-type=t3.xlarge,node.kubernetes.io/instance-type=t3.xlarge,alpha.eksctl.io/cluster-name=nrevanna-cluster3,topology.portworx.io/region=us-east-1,role=worker,eks.amazonaws.com/sourceLaunchTemplateId=lt-0bf075fc176b34b9c,eks.amazonaws.com/nodegroup=storage-nodes,iopriority=HIGH,k8s.io/cloud-provider-aws=5de246a5bbeb40c0113d48459436a4cb,kubernetes.io/arch=amd64 
+	Labels:  node.kubernetes.io/instance-type=t3.xlarge,eks.amazonaws.com/nodegroup-image=ami-00cc7446b763f6466,medium=STORAGE_MEDIUM_NVME,kubernetes.io/hostname=ip-192-168-18-191.ec2.internal,alpha.eksctl.io/nodegroup-name=storage-nodes,kubernetes.io/arch=amd64,topology.portworx.io/zone=us-east-1a,alpha.eksctl.io/cluster-name=nrevanna-cluster3,eks.amazonaws.com/sourceLaunchTemplateVersion=1,beta.kubernetes.io/os=linux,topology.kubernetes.io/region=us-east-1,topology.kubernetes.io/zone=us-east-1a,eks.amazonaws.com/sourceLaunchTemplateId=lt-0bf075fc176b34b9c,iopriority=HIGH,failure-domain.beta.kubernetes.io/zone=us-east-1a,k8s.io/cloud-provider-aws=5de246a5bbeb40c0113d48459436a4cb,topology.portworx.io/region=us-east-1,role=worker,eks.amazonaws.com/capacityType=ON_DEMAND,beta.kubernetes.io/arch=amd64,kubernetes.io/os=linux,failure-domain.beta.kubernetes.io/region=us-east-1,beta.kubernetes.io/instance-type=t3.xlarge,eks.amazonaws.com/nodegroup=storage-nodes 
 	Size: 150 GiB 
 	Status: [32mOnline[0m 
 	Has metadata:  Yes 
@@ -177,20 +163,29 @@ Pool ID: 0
 </pre>
       </div><div data-role="collapsible">
         <h1>lsblk</h1>
-        <pre>NAME          MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-nvme0n1       259:0    0   80G  0 disk 
-|-nvme0n1p1   259:1    0   80G  0 part /
-`-nvme0n1p128 259:2    0    1M  0 part 
-nvme1n1       259:3    0  150G  0 disk 
-nvme2n1       259:4    0  150G  0 disk 
+        <pre>NAME FSTYPE LABEL                UUID                                 MOUNTPOINT
+nvme0n1
+|                                                                     
+|-nvme0n1p1
+|    xfs    /                    027092f5-b7f8-4b7a-8eb4-bb3417968c9b /
+`-nvme0n1p128
+                                                                      
+nvme1n1
+     btrfs  pxpool=0,mdpoolid=0,initinprogress,mdvol
+                                 0964be4b-85b4-4d0f-8a15-4d51cc11c4b1 
+nvme2n1
+     xfs    kvdbvol              fd41f82c-adb1-42b2-863c-f3f2a51b8f6f 
 </pre>
       </div>
         </div>
             <div data-role="collapsible">
       <h1>ip-192-168-82-121.ec2.internal</h1><div data-role="collapsible">
         <h1>blkid</h1>
-        <pre>blkid: invalid option -- 'f'
-Try 'blkid -h' for more information.
+        <pre>/dev/nvme0n1: PTUUID="88b9b632-8f96-41d2-8820-0d935e0d42cf" PTTYPE="gpt"
+/dev/nvme0n1p1: LABEL="/" UUID="027092f5-b7f8-4b7a-8eb4-bb3417968c9b" TYPE="xfs" PARTLABEL="Linux" PARTUUID="5da2b78b-6e3b-4976-b2fa-087124118e4d"
+/dev/nvme0n1p128: PARTLABEL="BIOS Boot Partition" PARTUUID="b9688053-bffe-4385-948c-01e807d94ef4"
+/dev/nvme1n1: LABEL="pxpool=0,mdpoolid=0,initinprogress,mdvol" UUID="d685bc73-4e4f-4b9f-b4c1-64f980c39a40" UUID_SUB="22650622-8757-4f28-9fcc-dd7e90de4932" TYPE="btrfs"
+/dev/nvme2n1: LABEL="kvdbvol" UUID="20c7f877-8252-4305-bbc6-c10f398686c5" TYPE="xfs"
 </pre>
       </div><div data-role="collapsible">
         <h1>pxctl sv pool show</h1>
@@ -198,7 +193,7 @@ Try 'blkid -h' for more information.
 Pool ID: 0 
 	UUID:  5f54add0-2f46-4d3c-9c70-eadb57f42041 
 	IO Priority:  HIGH 
-	Labels:  kubernetes.io/os=linux,kubernetes.io/arch=amd64,eks.amazonaws.com/sourceLaunchTemplateVersion=1,alpha.eksctl.io/cluster-name=nrevanna-cluster3,eks.amazonaws.com/nodegroup-image=ami-00cc7446b763f6466,medium=STORAGE_MEDIUM_NVME,role=worker,eks.amazonaws.com/capacityType=ON_DEMAND,beta.kubernetes.io/arch=amd64,beta.kubernetes.io/instance-type=t3.xlarge,topology.portworx.io/region=us-east-1,alpha.eksctl.io/nodegroup-name=storage-nodes,iopriority=HIGH,topology.kubernetes.io/region=us-east-1,node.kubernetes.io/instance-type=t3.xlarge,topology.portworx.io/zone=us-east-1c,failure-domain.beta.kubernetes.io/zone=us-east-1c,failure-domain.beta.kubernetes.io/region=us-east-1,eks.amazonaws.com/nodegroup=storage-nodes,kubernetes.io/hostname=ip-192-168-82-121.ec2.internal,beta.kubernetes.io/os=linux,k8s.io/cloud-provider-aws=5de246a5bbeb40c0113d48459436a4cb,eks.amazonaws.com/sourceLaunchTemplateId=lt-0bf075fc176b34b9c,topology.kubernetes.io/zone=us-east-1c 
+	Labels:  kubernetes.io/arch=amd64,role=worker,kubernetes.io/os=linux,k8s.io/cloud-provider-aws=5de246a5bbeb40c0113d48459436a4cb,beta.kubernetes.io/arch=amd64,eks.amazonaws.com/capacityType=ON_DEMAND,medium=STORAGE_MEDIUM_NVME,eks.amazonaws.com/sourceLaunchTemplateId=lt-0bf075fc176b34b9c,topology.kubernetes.io/region=us-east-1,eks.amazonaws.com/sourceLaunchTemplateVersion=1,beta.kubernetes.io/instance-type=t3.xlarge,alpha.eksctl.io/nodegroup-name=storage-nodes,topology.kubernetes.io/zone=us-east-1c,kubernetes.io/hostname=ip-192-168-82-121.ec2.internal,eks.amazonaws.com/nodegroup-image=ami-00cc7446b763f6466,failure-domain.beta.kubernetes.io/zone=us-east-1c,iopriority=HIGH,eks.amazonaws.com/nodegroup=storage-nodes,topology.portworx.io/zone=us-east-1c,alpha.eksctl.io/cluster-name=nrevanna-cluster3,topology.portworx.io/region=us-east-1,failure-domain.beta.kubernetes.io/region=us-east-1,beta.kubernetes.io/os=linux,node.kubernetes.io/instance-type=t3.xlarge 
 	Size: 150 GiB 
 	Status: [32mOnline[0m 
 	Has metadata:  Yes 
@@ -214,20 +209,29 @@ Pool ID: 0
 </pre>
       </div><div data-role="collapsible">
         <h1>lsblk</h1>
-        <pre>NAME          MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-nvme0n1       259:0    0   80G  0 disk 
-|-nvme0n1p1   259:1    0   80G  0 part /
-`-nvme0n1p128 259:2    0    1M  0 part 
-nvme1n1       259:3    0  150G  0 disk 
-nvme2n1       259:4    0  150G  0 disk 
+        <pre>NAME FSTYPE LABEL                UUID                                 MOUNTPOINT
+nvme0n1
+|                                                                     
+|-nvme0n1p1
+|    xfs    /                    027092f5-b7f8-4b7a-8eb4-bb3417968c9b /
+`-nvme0n1p128
+                                                                      
+nvme1n1
+     btrfs  pxpool=0,mdpoolid=0,initinprogress,mdvol
+                                 d685bc73-4e4f-4b9f-b4c1-64f980c39a40 
+nvme2n1
+     xfs    kvdbvol              20c7f877-8252-4305-bbc6-c10f398686c5 
 </pre>
       </div>
         </div>
             <div data-role="collapsible">
       <h1>ip-192-168-51-87.ec2.internal</h1><div data-role="collapsible">
         <h1>blkid</h1>
-        <pre>blkid: invalid option -- 'f'
-Try 'blkid -h' for more information.
+        <pre>/dev/nvme0n1p1: LABEL="/" UUID="027092f5-b7f8-4b7a-8eb4-bb3417968c9b" TYPE="xfs" PARTLABEL="Linux" PARTUUID="5da2b78b-6e3b-4976-b2fa-087124118e4d"
+/dev/nvme1n1: LABEL="initinprogress,mdpoolid=0,pxpool=0,mdvol" UUID="bc1bebad-3318-458f-baa8-92b1a25f884a" UUID_SUB="ff2d60c1-4a1e-44fc-84c6-163d0e6e1a2a" TYPE="btrfs"
+/dev/nvme2n1: LABEL="kvdbvol" UUID="400955f8-e809-46e1-b2b3-3b28076d0bc2" TYPE="xfs"
+/dev/nvme0n1: PTUUID="88b9b632-8f96-41d2-8820-0d935e0d42cf" PTTYPE="gpt"
+/dev/nvme0n1p128: PARTLABEL="BIOS Boot Partition" PARTUUID="b9688053-bffe-4385-948c-01e807d94ef4"
 </pre>
       </div><div data-role="collapsible">
         <h1>pxctl sv pool show</h1>
@@ -235,7 +239,7 @@ Try 'blkid -h' for more information.
 Pool ID: 0 
 	UUID:  e8e80e6e-3861-44bf-97c3-590016091c5b 
 	IO Priority:  HIGH 
-	Labels:  kubernetes.io/os=linux,kubernetes.io/arch=amd64,topology.kubernetes.io/zone=us-east-1b,role=worker,k8s.io/cloud-provider-aws=5de246a5bbeb40c0113d48459436a4cb,topology.portworx.io/zone=us-east-1b,beta.kubernetes.io/os=linux,medium=STORAGE_MEDIUM_NVME,kubernetes.io/hostname=ip-192-168-51-87.ec2.internal,failure-domain.beta.kubernetes.io/region=us-east-1,iopriority=HIGH,eks.amazonaws.com/nodegroup=storage-nodes,topology.kubernetes.io/region=us-east-1,eks.amazonaws.com/capacityType=ON_DEMAND,node.kubernetes.io/instance-type=t3.xlarge,beta.kubernetes.io/instance-type=t3.xlarge,eks.amazonaws.com/sourceLaunchTemplateVersion=1,eks.amazonaws.com/sourceLaunchTemplateId=lt-0bf075fc176b34b9c,failure-domain.beta.kubernetes.io/zone=us-east-1b,alpha.eksctl.io/cluster-name=nrevanna-cluster3,alpha.eksctl.io/nodegroup-name=storage-nodes,eks.amazonaws.com/nodegroup-image=ami-00cc7446b763f6466,beta.kubernetes.io/arch=amd64,topology.portworx.io/region=us-east-1 
+	Labels:  kubernetes.io/hostname=ip-192-168-51-87.ec2.internal,failure-domain.beta.kubernetes.io/region=us-east-1,alpha.eksctl.io/cluster-name=nrevanna-cluster3,eks.amazonaws.com/capacityType=ON_DEMAND,beta.kubernetes.io/instance-type=t3.xlarge,beta.kubernetes.io/arch=amd64,topology.portworx.io/region=us-east-1,eks.amazonaws.com/sourceLaunchTemplateId=lt-0bf075fc176b34b9c,topology.kubernetes.io/region=us-east-1,iopriority=HIGH,failure-domain.beta.kubernetes.io/zone=us-east-1b,alpha.eksctl.io/nodegroup-name=storage-nodes,medium=STORAGE_MEDIUM_NVME,k8s.io/cloud-provider-aws=5de246a5bbeb40c0113d48459436a4cb,eks.amazonaws.com/sourceLaunchTemplateVersion=1,topology.portworx.io/zone=us-east-1b,eks.amazonaws.com/nodegroup=storage-nodes,node.kubernetes.io/instance-type=t3.xlarge,role=worker,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/os=linux,eks.amazonaws.com/nodegroup-image=ami-00cc7446b763f6466,topology.kubernetes.io/zone=us-east-1b 
 	Size: 150 GiB 
 	Status: [32mOnline[0m 
 	Has metadata:  Yes 
@@ -251,20 +255,28 @@ Pool ID: 0
 </pre>
       </div><div data-role="collapsible">
         <h1>lsblk</h1>
-        <pre>NAME          MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-nvme0n1       259:0    0   80G  0 disk 
-|-nvme0n1p1   259:1    0   80G  0 part /
-`-nvme0n1p128 259:2    0    1M  0 part 
-nvme1n1       259:3    0  150G  0 disk 
-nvme2n1       259:4    0  150G  0 disk 
+        <pre>NAME FSTYPE LABEL                UUID                                 MOUNTPOINT
+nvme0n1
+|                                                                     
+|-nvme0n1p1
+|    xfs    /                    027092f5-b7f8-4b7a-8eb4-bb3417968c9b /
+`-nvme0n1p128
+                                                                      
+nvme1n1
+     btrfs  initinprogress,mdpoolid=0,pxpool=0,mdvol
+                                 bc1bebad-3318-458f-baa8-92b1a25f884a 
+nvme2n1
+     xfs    kvdbvol              400955f8-e809-46e1-b2b3-3b28076d0bc2 
 </pre>
       </div>
         </div>
             <div data-role="collapsible">
       <h1>ip-192-168-20-4.ec2.internal</h1><div data-role="collapsible">
         <h1>blkid</h1>
-        <pre>blkid: invalid option -- 'f'
-Try 'blkid -h' for more information.
+        <pre>/dev/nvme0n1: PTUUID="88b9b632-8f96-41d2-8820-0d935e0d42cf" PTTYPE="gpt"
+/dev/nvme0n1p1: LABEL="/" UUID="027092f5-b7f8-4b7a-8eb4-bb3417968c9b" TYPE="xfs" PARTLABEL="Linux" PARTUUID="5da2b78b-6e3b-4976-b2fa-087124118e4d"
+/dev/nvme0n1p128: PARTLABEL="BIOS Boot Partition" PARTUUID="b9688053-bffe-4385-948c-01e807d94ef4"
+/dev/nvme1n1: LABEL="pxpool=0,mdpoolid=0,initinprogress,mdvol" UUID="c2c7ada0-7867-4304-a866-45c489673d8f" UUID_SUB="00b622db-06e3-4d6c-b546-d0fb1509303e" TYPE="btrfs"
 </pre>
       </div><div data-role="collapsible">
         <h1>pxctl sv pool show</h1>
@@ -272,7 +284,7 @@ Try 'blkid -h' for more information.
 Pool ID: 0 
 	UUID:  f7742d86-8684-4ef7-83da-3e1b2e4c9cd3 
 	IO Priority:  HIGH 
-	Labels:  eks.amazonaws.com/nodegroup=storage-nodes,beta.kubernetes.io/arch=amd64,kubernetes.io/arch=amd64,alpha.eksctl.io/cluster-name=nrevanna-cluster3,k8s.io/cloud-provider-aws=5de246a5bbeb40c0113d48459436a4cb,topology.portworx.io/region=us-east-1,iopriority=HIGH,topology.kubernetes.io/zone=us-east-1a,failure-domain.beta.kubernetes.io/zone=us-east-1a,node.kubernetes.io/instance-type=t3.xlarge,failure-domain.beta.kubernetes.io/region=us-east-1,eks.amazonaws.com/sourceLaunchTemplateVersion=1,beta.kubernetes.io/os=linux,beta.kubernetes.io/instance-type=t3.xlarge,eks.amazonaws.com/capacityType=ON_DEMAND,eks.amazonaws.com/nodegroup-image=ami-00cc7446b763f6466,kubernetes.io/os=linux,alpha.eksctl.io/nodegroup-name=storage-nodes,eks.amazonaws.com/sourceLaunchTemplateId=lt-0bf075fc176b34b9c,topology.portworx.io/zone=us-east-1a,role=worker,medium=STORAGE_MEDIUM_NVME,kubernetes.io/hostname=ip-192-168-20-4.ec2.internal,topology.kubernetes.io/region=us-east-1 
+	Labels:  node.kubernetes.io/instance-type=t3.xlarge,topology.portworx.io/region=us-east-1,eks.amazonaws.com/nodegroup=storage-nodes,k8s.io/cloud-provider-aws=5de246a5bbeb40c0113d48459436a4cb,failure-domain.beta.kubernetes.io/zone=us-east-1a,beta.kubernetes.io/arch=amd64,topology.kubernetes.io/region=us-east-1,eks.amazonaws.com/capacityType=ON_DEMAND,kubernetes.io/os=linux,iopriority=HIGH,alpha.eksctl.io/cluster-name=nrevanna-cluster3,role=worker,beta.kubernetes.io/instance-type=t3.xlarge,medium=STORAGE_MEDIUM_NVME,eks.amazonaws.com/nodegroup-image=ami-00cc7446b763f6466,alpha.eksctl.io/nodegroup-name=storage-nodes,topology.portworx.io/zone=us-east-1a,kubernetes.io/hostname=ip-192-168-20-4.ec2.internal,eks.amazonaws.com/sourceLaunchTemplateId=lt-0bf075fc176b34b9c,failure-domain.beta.kubernetes.io/region=us-east-1,beta.kubernetes.io/os=linux,eks.amazonaws.com/sourceLaunchTemplateVersion=1,topology.kubernetes.io/zone=us-east-1a,kubernetes.io/arch=amd64 
 	Size: 150 GiB 
 	Status: [32mOnline[0m 
 	Has metadata:  Yes 
@@ -288,19 +300,26 @@ Pool ID: 0
 </pre>
       </div><div data-role="collapsible">
         <h1>lsblk</h1>
-        <pre>NAME          MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-nvme0n1       259:0    0   80G  0 disk 
-|-nvme0n1p1   259:1    0   80G  0 part /
-`-nvme0n1p128 259:2    0    1M  0 part 
-nvme1n1       259:3    0  150G  0 disk 
+        <pre>NAME FSTYPE LABEL                UUID                                 MOUNTPOINT
+nvme0n1
+|                                                                     
+|-nvme0n1p1
+|    xfs    /                    027092f5-b7f8-4b7a-8eb4-bb3417968c9b /
+`-nvme0n1p128
+                                                                      
+nvme1n1
+     btrfs  pxpool=0,mdpoolid=0,initinprogress,mdvol
+                                 c2c7ada0-7867-4304-a866-45c489673d8f 
 </pre>
       </div>
         </div>
             <div data-role="collapsible">
       <h1>ip-192-168-91-7.ec2.internal</h1><div data-role="collapsible">
         <h1>blkid</h1>
-        <pre>blkid: invalid option -- 'f'
-Try 'blkid -h' for more information.
+        <pre>/dev/nvme0n1: PTUUID="88b9b632-8f96-41d2-8820-0d935e0d42cf" PTTYPE="gpt"
+/dev/nvme0n1p1: LABEL="/" UUID="027092f5-b7f8-4b7a-8eb4-bb3417968c9b" TYPE="xfs" PARTLABEL="Linux" PARTUUID="5da2b78b-6e3b-4976-b2fa-087124118e4d"
+/dev/nvme0n1p128: PARTLABEL="BIOS Boot Partition" PARTUUID="b9688053-bffe-4385-948c-01e807d94ef4"
+/dev/nvme1n1: LABEL="mdpoolid=0,pxpool=0,initinprogress,mdvol" UUID="e2b35c29-692a-46eb-95e5-1dc8225f54b3" UUID_SUB="32b56252-41e9-4357-9c18-661cce3deedb" TYPE="btrfs"
 </pre>
       </div><div data-role="collapsible">
         <h1>pxctl sv pool show</h1>
@@ -308,7 +327,7 @@ Try 'blkid -h' for more information.
 Pool ID: 0 
 	UUID:  7ad347b4-2add-4e64-a873-e1aae94539e7 
 	IO Priority:  HIGH 
-	Labels:  failure-domain.beta.kubernetes.io/region=us-east-1,beta.kubernetes.io/arch=amd64,eks.amazonaws.com/nodegroup-image=ami-00cc7446b763f6466,failure-domain.beta.kubernetes.io/zone=us-east-1c,alpha.eksctl.io/nodegroup-name=storage-nodes,alpha.eksctl.io/cluster-name=nrevanna-cluster3,medium=STORAGE_MEDIUM_NVME,eks.amazonaws.com/nodegroup=storage-nodes,eks.amazonaws.com/capacityType=ON_DEMAND,beta.kubernetes.io/instance-type=t3.xlarge,k8s.io/cloud-provider-aws=5de246a5bbeb40c0113d48459436a4cb,kubernetes.io/hostname=ip-192-168-91-7.ec2.internal,kubernetes.io/os=linux,kubernetes.io/arch=amd64,eks.amazonaws.com/sourceLaunchTemplateVersion=1,iopriority=HIGH,topology.kubernetes.io/region=us-east-1,node.kubernetes.io/instance-type=t3.xlarge,topology.portworx.io/zone=us-east-1c,topology.kubernetes.io/zone=us-east-1c,topology.portworx.io/region=us-east-1,eks.amazonaws.com/sourceLaunchTemplateId=lt-0bf075fc176b34b9c,role=worker,beta.kubernetes.io/os=linux 
+	Labels:  beta.kubernetes.io/instance-type=t3.xlarge,medium=STORAGE_MEDIUM_NVME,eks.amazonaws.com/nodegroup-image=ami-00cc7446b763f6466,alpha.eksctl.io/cluster-name=nrevanna-cluster3,topology.portworx.io/zone=us-east-1c,topology.kubernetes.io/region=us-east-1,kubernetes.io/os=linux,k8s.io/cloud-provider-aws=5de246a5bbeb40c0113d48459436a4cb,beta.kubernetes.io/os=linux,beta.kubernetes.io/arch=amd64,eks.amazonaws.com/sourceLaunchTemplateId=lt-0bf075fc176b34b9c,iopriority=HIGH,node.kubernetes.io/instance-type=t3.xlarge,kubernetes.io/arch=amd64,eks.amazonaws.com/capacityType=ON_DEMAND,failure-domain.beta.kubernetes.io/zone=us-east-1c,topology.portworx.io/region=us-east-1,alpha.eksctl.io/nodegroup-name=storage-nodes,failure-domain.beta.kubernetes.io/region=us-east-1,topology.kubernetes.io/zone=us-east-1c,role=worker,eks.amazonaws.com/nodegroup=storage-nodes,kubernetes.io/hostname=ip-192-168-91-7.ec2.internal,eks.amazonaws.com/sourceLaunchTemplateVersion=1 
 	Size: 150 GiB 
 	Status: [32mOnline[0m 
 	Has metadata:  Yes 
@@ -324,19 +343,25 @@ Pool ID: 0
 </pre>
       </div><div data-role="collapsible">
         <h1>lsblk</h1>
-        <pre>NAME          MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-nvme0n1       259:0    0   80G  0 disk 
-|-nvme0n1p1   259:1    0   80G  0 part /
-`-nvme0n1p128 259:2    0    1M  0 part 
-nvme1n1       259:3    0  150G  0 disk 
+        <pre>NAME FSTYPE LABEL                UUID                                 MOUNTPOINT
+nvme0n1
+|                                                                     
+|-nvme0n1p1
+|    xfs    /                    027092f5-b7f8-4b7a-8eb4-bb3417968c9b /
+`-nvme0n1p128
+                                                                      
+nvme1n1
+     btrfs  mdpoolid=0,pxpool=0,initinprogress,mdvol
+                                 e2b35c29-692a-46eb-95e5-1dc8225f54b3 
 </pre>
       </div>
         </div>
             <div data-role="collapsible">
       <h1>ip-192-168-51-111.ec2.internal</h1><div data-role="collapsible">
         <h1>blkid</h1>
-        <pre>blkid: invalid option -- 'f'
-Try 'blkid -h' for more information.
+        <pre>/dev/nvme0n1: PTUUID="88b9b632-8f96-41d2-8820-0d935e0d42cf" PTTYPE="gpt"
+/dev/nvme0n1p1: LABEL="/" UUID="027092f5-b7f8-4b7a-8eb4-bb3417968c9b" TYPE="xfs" PARTLABEL="Linux" PARTUUID="5da2b78b-6e3b-4976-b2fa-087124118e4d"
+/dev/nvme0n1p128: PARTLABEL="BIOS Boot Partition" PARTUUID="b9688053-bffe-4385-948c-01e807d94ef4"
 </pre>
       </div><div data-role="collapsible">
         <h1>pxctl sv pool show</h1>
@@ -353,10 +378,10 @@ List of last known failures:
 </pre>
       </div><div data-role="collapsible">
         <h1>lsblk</h1>
-        <pre>NAME          MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
-nvme0n1       259:0    0  80G  0 disk 
-|-nvme0n1p1   259:1    0  80G  0 part /
-`-nvme0n1p128 259:2    0   1M  0 part 
+        <pre>NAME          FSTYPE LABEL UUID                                 MOUNTPOINT
+nvme0n1                                                         
+|-nvme0n1p1   xfs    /     027092f5-b7f8-4b7a-8eb4-bb3417968c9b /
+`-nvme0n1p128                                                   
 </pre>
       </div>
         </div>

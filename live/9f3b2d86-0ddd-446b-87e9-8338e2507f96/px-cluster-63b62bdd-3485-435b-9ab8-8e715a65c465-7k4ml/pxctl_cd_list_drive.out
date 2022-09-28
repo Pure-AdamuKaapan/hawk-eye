@@ -1,0 +1,15 @@
+[4;1mCloud Drives Summary[0m
+[4;1m
+Total number of drives: 8[0m
+[4;1m
+Drive List[0m
+[37m	Drive ID		NodeID					Zone		Labels	[0m
+[37m	vol-000305374238cf22a	9a6378b7-7caf-474d-81bc-14c8ef4eb51f	us-east-1b	-[0m
+[37m	vol-08f00bd8e14c2c558	9a6378b7-7caf-474d-81bc-14c8ef4eb51f	us-east-1b	-[0m
+[37m	vol-0413014eca3b2e85f	ed89eb5f-1b91-43cf-a171-c906a40a799b	us-east-1c	-[0m
+[37m	vol-051fa18c3f2565304	ed89eb5f-1b91-43cf-a171-c906a40a799b	us-east-1c	-[0m
+[37m	vol-0eaac95e300a128d4	17f392d7-342a-48fb-850f-06a8b7515ed0	us-east-1a	-[0m
+[37m	vol-0ead7a2fdf768a4f9	17f392d7-342a-48fb-850f-06a8b7515ed0	us-east-1a	-[0m
+[37m	vol-0fc326e672d4a2f38	2f9ab2f6-4aa1-4fa2-9d4c-3994f8723951	us-east-1c	-[0m
+[37m	vol-060140db7fa5d4432	386dd1b8-9064-48c4-adf8-edf61b8ca15c	us-east-1a	-[0m
+

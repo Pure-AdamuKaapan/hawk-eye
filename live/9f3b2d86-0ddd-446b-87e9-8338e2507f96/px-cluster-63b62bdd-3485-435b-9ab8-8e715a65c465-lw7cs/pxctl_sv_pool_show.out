@@ -1,0 +1,13 @@
+PX drive configuration:
+Pool ID: 0 
+	UUID:  7ad347b4-2add-4e64-a873-e1aae94539e7 
+	IO Priority:  HIGH 
+	Labels:  beta.kubernetes.io/instance-type=t3.xlarge,medium=STORAGE_MEDIUM_NVME,eks.amazonaws.com/nodegroup-image=ami-00cc7446b763f6466,alpha.eksctl.io/cluster-name=nrevanna-cluster3,topology.portworx.io/zone=us-east-1c,topology.kubernetes.io/region=us-east-1,kubernetes.io/os=linux,k8s.io/cloud-provider-aws=5de246a5bbeb40c0113d48459436a4cb,beta.kubernetes.io/os=linux,beta.kubernetes.io/arch=amd64,eks.amazonaws.com/sourceLaunchTemplateId=lt-0bf075fc176b34b9c,iopriority=HIGH,node.kubernetes.io/instance-type=t3.xlarge,kubernetes.io/arch=amd64,eks.amazonaws.com/capacityType=ON_DEMAND,failure-domain.beta.kubernetes.io/zone=us-east-1c,topology.portworx.io/region=us-east-1,alpha.eksctl.io/nodegroup-name=storage-nodes,failure-domain.beta.kubernetes.io/region=us-east-1,topology.kubernetes.io/zone=us-east-1c,role=worker,eks.amazonaws.com/nodegroup=storage-nodes,kubernetes.io/hostname=ip-192-168-91-7.ec2.internal,eks.amazonaws.com/sourceLaunchTemplateVersion=1 
+	Size: 150 GiB 
+	Status: [32mOnline[0m 
+	Has metadata:  Yes 
+	Balanced:  Yes 
+	Drives:
+	1: /dev/nvme1n1, Total size 150 GiB, [32mOnline[0m
+	Cache Drives:
+	No Cache drives found in this pool

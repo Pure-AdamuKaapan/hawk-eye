@@ -1,6 +1,6 @@
 Kvdb Cluster Members: 
 [4;1mID					PEER URLs				CLIENT URLs			LEADER	HEALTHY	DBSIZE[0m
+[37m17f392d7-342a-48fb-850f-06a8b7515ed0	[http://portworx-1.internal.kvdb:9018]	[http://192.168.18.191:9019]	true	true	532 KiB[0m
 [37m9a6378b7-7caf-474d-81bc-14c8ef4eb51f	[http://portworx-2.internal.kvdb:9018]	[http://192.168.51.87:9019]	false	true	520 KiB[0m
 [37med89eb5f-1b91-43cf-a171-c906a40a799b	[http://portworx-3.internal.kvdb:9018]	[http://192.168.82.121:9019]	false	true	524 KiB[0m
-[37m17f392d7-342a-48fb-850f-06a8b7515ed0	[http://portworx-1.internal.kvdb:9018]	[http://192.168.18.191:9019]	true	true	532 KiB[0m
 

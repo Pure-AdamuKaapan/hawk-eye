@@ -1,0 +1,12 @@
+NAME FSTYPE LABEL                UUID                                 MOUNTPOINT
+nvme0n1
+|                                                                     
+|-nvme0n1p1
+|    xfs    /                    027092f5-b7f8-4b7a-8eb4-bb3417968c9b /
+`-nvme0n1p128
+                                                                      
+nvme1n1
+     btrfs  pxpool=0,mdpoolid=0,initinprogress,mdvol
+                                 d685bc73-4e4f-4b9f-b4c1-64f980c39a40 
+nvme2n1
+     xfs    kvdbvol              20c7f877-8252-4305-bbc6-c10f398686c5 

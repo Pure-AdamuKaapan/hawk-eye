@@ -1,0 +1,4 @@
+/dev/nvme0n1: PTUUID="88b9b632-8f96-41d2-8820-0d935e0d42cf" PTTYPE="gpt"
+/dev/nvme0n1p1: LABEL="/" UUID="027092f5-b7f8-4b7a-8eb4-bb3417968c9b" TYPE="xfs" PARTLABEL="Linux" PARTUUID="5da2b78b-6e3b-4976-b2fa-087124118e4d"
+/dev/nvme0n1p128: PARTLABEL="BIOS Boot Partition" PARTUUID="b9688053-bffe-4385-948c-01e807d94ef4"
+/dev/nvme1n1: LABEL="pxpool=0,mdpoolid=0,initinprogress,mdvol" UUID="c2c7ada0-7867-4304-a866-45c489673d8f" UUID_SUB="00b622db-06e3-4d6c-b546-d0fb1509303e" TYPE="btrfs"

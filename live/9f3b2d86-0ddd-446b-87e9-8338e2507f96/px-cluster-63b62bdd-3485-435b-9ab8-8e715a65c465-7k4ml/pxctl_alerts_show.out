@@ -12,6 +12,6 @@
 [0m[32mNODE	NodeStartSuccess	2f9ab2f6-4aa1-4fa2-9d4c-3994f8723951	NOTIFY		1	Sep 28 05:14:34 UTC 2022	Sep 28 05:14:34 UTC 2022	PX is ready on this node																						
 [0m[33mCLUSTER	MeteringAgentWarning						WARN		1	Sep 28 06:13:45 UTC 2022	Sep 28 06:13:45 UTC 2022	Unable to reach to billing server: Cannot send metric to the billing endpoint: Cannot send metric to the billing endpoint: Response Code: 500, error in sending metering information, Err: {"message":"cannot register usage, Err: cannot register new cluster, all available essentials licenses exhausted for user 74b6a08c-e439-11eb-8b5b-4ef4c7a81109","code":500}
 	
-[0m[31mCLUSTER	MeteringAgentCritical		ALARM	2	Sep 28 07:14:01 UTC 2022	Sep 28 05:13:28 UTC 2022	Unable to reach to billing server: Cannot send metric to the billing endpoint: Cannot send metric to the billing endpoint: Response Code: 500, error in sending metering information, Err: {"message":"cannot register usage, Err: cannot register new cluster, all available essentials licenses exhausted for user 74b6a08c-e439-11eb-8b5b-4ef4c7a81109","code":500}
+[0m[31mCLUSTER	MeteringAgentCritical		ALARM	3	Sep 28 08:14:17 UTC 2022	Sep 28 05:13:28 UTC 2022	Unable to reach to billing server: Cannot send metric to the billing endpoint: Cannot send metric to the billing endpoint: Response Code: 500, error in sending metering information, Err: {"message":"cannot register usage, Err: cannot register new cluster, all available essentials licenses exhausted for user 74b6a08c-e439-11eb-8b5b-4ef4c7a81109","code":500}
 	
 [0m
