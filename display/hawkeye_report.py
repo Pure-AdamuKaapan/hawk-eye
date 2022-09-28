@@ -65,6 +65,11 @@ class Report:
         cluster_files = {
             "pxctl status" : "px-status.out",
             "Bootstrap entries" : "px-boostrap-list.out",
+            "pxctl status" : 'pxctl_status.out',
+            "pxctl cd list-drives" : 'pxctl_cd_list_drive.out',
+            "pxctl sv kvdb members" : 'pxctl_sv_kvdb_members.out',
+            "pxctl volume list" : 'pxctl_v_l.out',
+            "pxctl alerts show" : 'pxctl_alerts_show.out',
             #"PX volumes" : 'px-volumes.out'
             }
         files_to_parse = {}
@@ -85,7 +90,9 @@ class Report:
             "Node name" : "uname.out",
             "PX version": "px-version.out",
             "lsblk" : "lsblk.out",
+            "blkid" : "blkid.out",
             "System restarts" : "last.out",
+            "pxctl sv pool show" : 'pxctl_sv_pool_show.out',
             }
         result = {}
         hostnames = {}
