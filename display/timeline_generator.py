@@ -84,7 +84,7 @@ for name, group in df.groupby('node'):
     #fig.update_yaxes(autorange="reversed") # otherwise tasks are listed from the bottom up
     fig.show()
 
-fig.write_html("./sharedv4.html")
-fig.write_html("./sharedv4.png")
+fig.write_html("./timeline.html")
+fig.write_html("./timeline.png")
 f.close()
 
