@@ -21,9 +21,6 @@ class Events:
         self.eventSeverity= ""
         self.eventObject= ""
     def to_dict(self):
-        my_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(1347517370))
-        datetime.datetime.fromtimestamp(1347517370).strftime('%Y-%m-%d %H:%M:%S')
-        
         start = datetime.datetime.fromtimestamp(int(self.start)).strftime('%Y-%m-%d %H:%M:%S')
         end = datetime.datetime.fromtimestamp(int(self.finish)).strftime('%Y-%m-%d %H:%M:%S')
         return {
@@ -36,7 +33,7 @@ class Events:
         }
 
 # Opening JSON file
-f = open('events.json')
+f = open('events.out')
   
 # Returns JSON object as a dictionary
 data = json.load(f)
