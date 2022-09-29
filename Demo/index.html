@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        <style>
+      .container {
+        display: flex;
+        align-items: right;
+        justify-content: right
+      }
+      img {
+        max-width: 100%
+      }
+      .image {
+        flex-basis: 70%;
+        order: 1;
+      }
+      .text {
+        color: #89CFF0;
+        padding-right: 20px;
+        font: italic 30px "Fira Sans", serif;
+      }
+    </style>
+
+    </head>
+    <body>
+
+
+
+    <div data-role="page" id="pageone">
+    <div class="container">
+      <div class="text">
+        <h1>Hawk-Eye</h1>
+      </div>
+      <div class="image">
+        <img src="logo.jpeg">
+      </div>
+    </div>
+    <div data-role="header">
+        <h1>Information</h1>
+      </div>
+
+      <div data-role="main" class="ui-content">    <div data-role="collapsible">
+      <h1>Cluster</h1><div data-role="collapsible">
+        <h1>Bootstrap entries</h1>
+        <pre>Bootstrap Entries: 
+ID					IP		Index	Node Type	Node State
+dc5d3c0b-34f5-4d07-a796-64af954df1bc	10.65.33.7	0	Leader		Operational
+0170cedd-755a-40a7-8403-49029753d426	10.65.33.5	1	Member		Operational
+d58070a7-8057-46e6-a39a-6377faa0f302	10.65.33.6	2	Member		Operational
+
+</pre>
+      </div><div data-role="collapsible">
+        <h1>pxctl status</h1>
+        <pre>Status: PX is operational
+Telemetry: Healthy
+License: PX-Enterprise (floating) floating (expires in 6d, 22h, 40m)
+Node ID: 0170cedd-755a-40a7-8403-49029753d426
+	IP: 10.65.33.5 
+ 	Local Storage Pool: 1 pool
+	POOL	IO_PRIORITY	RAID_LEVEL	USABLE	USED	STATUS	ZONE	REGION
+	0	HIGH		raid0		500 GiB	128 GiB	Online	default	default
+	Local Storage Devices: 1 device
+	Device	Path		Media Type		Size		Last-Scan
+	0:1	/dev/sdc	STORAGE_MEDIUM_MAGNETIC	500 GiB		12 Sep 22 10:02 EDT
+	total			-			500 GiB
+	Cache Devices:
+	 * No cache devices
+	Kvdb Device:
+	Device Path	Size
+	/dev/sdd	120 GiB
+	 * Internal kvdb on this node is using this dedicated kvdb device to store its data.
+Cluster Summary
+	Cluster ID: ecs-ddtc-mis-p-a
+	Cluster UUID: 5c9f1b90-a5b1-4cec-8436-ac6fc92f4c9d
+	Scheduler: kubernetes
+	Nodes: 14 node(s) with storage (14 online), 3 node(s) without storage (3 online)
+	IP		ID					SchedulerNodeName	Auth		StorageNode	Used	Capacity	Status	StorageStatus	Version		Kernel				OS
+	10.65.33.7	dc5d3c0b-34f5-4d07-a796-64af954df1bc	catl0plas14832		Disabled	Yes		46 GiB	500 GiB		Online	Up		2.10.1-abc4f69	3.10.0-1160.71.1.el7.x86_64	CentOS Linux 7 (Core)
+	10.65.33.6	d58070a7-8057-46e6-a39a-6377faa0f302	catl0plas14834		Disabled	Yes		80 GiB	500 GiB		Online	Up		2.10.1-abc4f69	3.10.0-1160.71.1.el7.x86_64	CentOS Linux 7 (Core)
+	10.65.33.11	c424acef-d63f-49f2-b7b3-67790a029c67	catl0plas16158		Disabled	Yes		53 GiB	500 GiB		Online	Up		2.10.1-abc4f69	3.10.0-1160.71.1.el7.x86_64	CentOS Linux 7 (Core)
+	10.65.33.18	a96b0637-4d23-456c-a21d-f5fc41a96825	catl0plas18500		Disabled	Yes		29 GiB	500 GiB		Online	Up		2.10.1-abc4f69	3.10.0-1160.71.1.el7.x86_64	CentOS Linux 7 (Core)
+	10.65.33.12	a544577b-d05d-4b89-a14f-027ee1f61f35	catl0plas16156		Disabled	Yes		135 GiB	500 GiB		Online	Up		2.10.1-abc4f69	3.10.0-1160.71.1.el7.x86_64	CentOS Linux 7 (Core)
+	10.65.33.15	a23d8375-4194-455a-ac4a-7394d36f8526	catl0plas18182		Disabled	Yes		22 GiB	500 GiB		Online	Up		2.10.1-abc4f69	3.10.0-1160.71.1.el7.x86_64	CentOS Linux 7 (Core)
+	10.65.33.17	92c6f8d8-c91d-423f-addf-cc7b8a64f1c3	catl0plas18499		Disabled	Yes		37 GiB	500 GiB		Online	Up		2.10.1-abc4f69	3.10.0-1160.71.1.el7.x86_64	CentOS Linux 7 (Core)
+	10.65.33.16	8791f218-8583-47b6-90f0-25c6048de25f	catl0plas18498		Disabled	Yes		20 GiB	500 GiB		Online	Up		2.10.1-abc4f69	3.10.0-1160.71.1.el7.x86_64	CentOS Linux 7 (Core)
+	10.65.33.9	7ebe04e3-f3f2-4cf3-9bea-419589f6bf3e	catl0plas15482		Disabled	Yes		9.8 GiB	500 GiB		Online	Up		2.10.1-abc4f69	3.10.0-1160.71.1.el7.x86_64	CentOS Linux 7 (Core)
+	10.65.33.10	6bd19d53-8504-4863-99ae-ecdd9f45ebda	catl0plas15481		Disabled	Yes		13 GiB	500 GiB		Online	Up		2.10.1-abc4f69	3.10.0-1160.71.1.el7.x86_64	CentOS Linux 7 (Core)
+	10.65.33.14	5ad520d2-1b83-4964-b767-08bb7debd9ef	catl0plas18183		Disabled	Yes		31 GiB	500 GiB		Online	Up		2.10.1-abc4f69	3.10.0-1160.71.1.el7.x86_64	CentOS Linux 7 (Core)
+	10.65.33.13	2858fff6-19b8-46ad-aa39-738fef765c50	catl0plas16157		Disabled	Yes		75 GiB	500 GiB		Online	Up		2.10.1-abc4f69	3.10.0-1160.71.1.el7.x86_64	CentOS Linux 7 (Core)
+	10.65.33.8	1daa9f59-7068-4d62-aff9-8535b63f5f21	catl0plas15483		Disabled	Yes		21 GiB	500 GiB		Online	Up		2.10.1-abc4f69	3.10.0-1160.71.1.el7.x86_64	CentOS Linux 7 (Core)
+	10.65.33.5	0170cedd-755a-40a7-8403-49029753d426	catl0plas14833		Disabled	Yes		128 GiB	500 GiB		Online	Up (This node)	2.10.1-abc4f69	3.10.0-1160.71.1.el7.x86_64	CentOS Linux 7 (Core)
+	10.65.33.135	fd2f29ae-fba9-4ae5-a959-0fdd50b9879f	dukekwpc007		Disabled	No		0 B	0 B		Online	No Storage	2.10.1-abc4f69	3.10.0-1160.71.1.el7.x86_64	CentOS Linux 7 (Core)
+	10.65.33.134	b8016b74-6d63-4244-add0-b810a1866176	dukekwpc003		Disabled	No		0 B	0 B		Online	No Storage	2.10.1-abc4f69	3.10.0-1160.71.1.el7.x86_64	CentOS Linux 7 (Core)
+	10.65.33.136	49bb325a-9254-41bf-b8ac-bbcfe6d316c7	dukekwpc050		Disabled	No		0 B	0 B		Online	No Storage	2.10.1-abc4f69	3.10.0-1160.71.1.el7.x86_64	CentOS Linux 7 (Core)
+Global Storage Pool
+	Total Used    	:  700 GiB
+	Total Capacity	:  6.8 TiB
+</pre>
+      </div>
+        </div>
+            <div data-role="collapsible">
+      <h1>catl0plas14833</h1><div data-role="collapsible">
+        <h1>Node name</h1>
+        <pre>Linux catl0plas14833 3.10.0-1160.71.1.el7.x86_64 #1 SMP Tue Jun 28 15:37:28 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
+</pre>
+      </div><div data-role="collapsible">
+        <h1>PX version</h1>
+        <pre>pxctl version 2.10.1-abc4f69 (OCI)
+</pre>
+      </div><div data-role="collapsible">
+        <h1>lsblk</h1>
+        <pre>NAME                       MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda                          8:0    0   64G  0 disk 
+├─sda1                       8:1    0    1G  0 part /boot
+├─sda2                       8:2    0    8G  0 part 
+└─sda3                       8:3    0   55G  0 part /
+sdb                          8:16   0  150G  0 disk 
+└─sdb1                       8:17   0  150G  0 part 
+  ├─localvg-kubelet        253:0    0   20G  0 lvm  /var/lib/kubelet
+  └─localvg-docker         253:1    0  130G  0 lvm  /var/lib/docker
+sdc                          8:32   0  500G  0 disk 
+sdd                          8:48   0  120G  0 disk /mnt
+sr0                         11:0    1 1024M  0 rom  
+pxd!pxd1120788231635330845 252:1    0  200G  0 disk /var/lib/osd/pxns/1120788231635330845
+pxd!pxd691965860228574175  252:4    0    5G  0 disk /var/lib/kubelet/pods/71dd55d2-3d84-462b-a26a-710a83bdee31/volumes/kubernetes.io~portworx-volume/pvc-a6536442-374c-42a7-a211-a6ed86b444bd
+</pre>
+      </div><div data-role="collapsible">
+        <h1>System restarts</h1>
+        <pre>reboot   system boot  3.10.0-1160.71.1 Wed Aug 17 01:01 - 11:25 (26+10:23)  
+
+wtmp begins Fri Jun 17 12:11:45 2022
+</pre>
+      </div>
+        </div>
+            <div data-role="collapsible">
+      <h1>catl0plas14833</h1><div data-role="collapsible">
+        <h1>Node name</h1>
+        <pre>Linux catl0plas14833 3.10.0-1160.71.1.el7.x86_64 #1 SMP Tue Jun 28 15:37:28 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
+</pre>
+      </div><div data-role="collapsible">
+        <h1>PX version</h1>
+        <pre>pxctl version 2.10.1-abc4f69 (OCI)
+</pre>
+      </div><div data-role="collapsible">
+        <h1>lsblk</h1>
+        <pre>NAME                       MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda                          8:0    0   64G  0 disk 
+├─sda1                       8:1    0    1G  0 part /boot
+├─sda2                       8:2    0    8G  0 part 
+└─sda3                       8:3    0   55G  0 part /
+sdb                          8:16   0  150G  0 disk 
+└─sdb1                       8:17   0  150G  0 part 
+  ├─localvg-kubelet        253:0    0   20G  0 lvm  /var/lib/kubelet
+  └─localvg-docker         253:1    0  130G  0 lvm  /var/lib/docker
+sdc                          8:32   0  500G  0 disk 
+sdd                          8:48   0  120G  0 disk /mnt
+sr0                         11:0    1 1024M  0 rom  
+pxd!pxd1120788231635330845 252:1    0  200G  0 disk /var/lib/osd/pxns/1120788231635330845
+pxd!pxd691965860228574175  252:4    0    5G  0 disk /var/lib/kubelet/pods/71dd55d2-3d84-462b-a26a-710a83bdee31/volumes/kubernetes.io~portworx-volume/pvc-a6536442-374c-42a7-a211-a6ed86b444bd
+</pre>
+      </div><div data-role="collapsible">
+        <h1>System restarts</h1>
+        <pre>reboot   system boot  3.10.0-1160.71.1 Wed Aug 17 01:01 - 11:25 (26+10:23)  
+
+wtmp begins Fri Jun 17 12:11:45 2022
+</pre>
+      </div>
+        </div>
+        </div><div data-role="header">
+        <h1>Timeline</h1>
+      </div>
+
+      <div data-role="main" class="ui-content">    <div data-role="collapsible">
+      <h1>Volume Timeline</h1><pre>
+        <img src="sharedv4.png">
+        <a href="sharedv4.html">Interactive Dashboard</a>
+                        </pre>
+    
+        </div>
+            <div data-role="collapsible">
+      <h1>Another Timeline</h1>
+        </div>
+        </div><div data-role="header">
+        <h1>Fingerprints</h1>
+      </div>
+
+      <div data-role="main" class="ui-content">    <div data-role="collapsible">
+      <h1>Know Issues</h1><div data-role="collapsible">
+        <h1>Must fix 1</h1>
+        <pre>More details</pre>
+      </div><div data-role="collapsible">
+        <h1>Must fix 2</h1>
+        <pre>More details</pre>
+      </div>
+        </div>
+            <div data-role="collapsible">
+      <h1>Recommended fixes</h1><div data-role="collapsible">
+        <h1>Recommendation 1</h1>
+        <pre>More details</pre>
+      </div><div data-role="collapsible">
+        <h1>Recommendation 2</h1>
+        <pre>More details</pre>
+      </div>
+        </div>
+        </div></div>
+
+</body>
+</html>
