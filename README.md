@@ -10,6 +10,10 @@
 
 Hawk-Eye is a platform that attempts to solve the above problems and more. 
 
+### Architecture
+![hawkeye](https://user-images.githubusercontent.com/12732386/192941957-39d95708-dc71-4d8f-8dc8-bc21f830af78.png)
+
+
 ### Hawk-Eye Report:
 The main output of hawk-eye is a Hawk-Eye Report. It consists of 3 sections
 - Information
@@ -39,6 +43,8 @@ $ ./hawk-eye events --focus=0454503f-4399-46fc-ac26-7ada4ecaaa70 test_data/PWX-2
 ```
 
 ## Pass events through the grapher to generate a Gantt chart
+Below command when executed from display will read from events.out and generate timeline
 ```
-$ TBD
+$ python3 timeline_generator.py
 ```
+![sharedv4](https://user-images.githubusercontent.com/12732386/192942054-a3585868-5887-4328-ae9b-54310617414a.png)
