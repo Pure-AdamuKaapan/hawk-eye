@@ -132,9 +132,9 @@ func NewPXDaemonExitedRec(vals []string) (record, error) {
 }
 
 func NewPXReadyRec(vals []string) (record, error) {
-	// timestamp,node_name
-	// 1662386697,ip-10-13-112-170.pwx.dev.purestorage.com
-	expected := 2
+	// timestamp,node_name,node_id
+	// 1662386697,ip-10-13-112-170.pwx.dev.purestorage.com,0cf91bb9-d4da-4058-b6ee-cd08f26f9aff
+	expected := 3
 	if len(vals) != expected {
 		return nil, fmt.Errorf("NewPXReadyRec: wrong number of values %d, expected %d", len(vals), expected)
 	}
@@ -264,7 +264,7 @@ func sourceMatches(left, right []*EventSource) bool {
 	return true
 }
 
-func sourceLess(left, right volRecord) bool {
+func sourceLessThan(left, right volRecord) bool {
 	if left.getNodeName() < right.getNodeName() {
 		return true
 	}
@@ -282,7 +282,7 @@ func recLess(left, right record) bool {
 }
 
 func volRecLess(left, right volRecord) bool {
-	if sourceLess(left, right) {
+	if sourceLessThan(left, right) {
 		return true
 	}
 	return left.getTimestamp() < right.getTimestamp()
@@ -369,14 +369,14 @@ func getPXDownEvents(path string) ([]*Event, error) {
 	readyRecs := []record{}
 
 	// PX daemon exited strings
-	fPath := filepath.Join(path, "table_aa037272f351b6586c80f9dbe7a1bb1ae0683cc3c2a4bf1f8013c4221f138e32.csv")
+	fPath := filepath.Join(path, "table_PX_Daemon_Exited.csv")
 	exitedRecs, err := getRecs(fPath, "", NewPXDaemonExitedRec)
 	if err != nil {
 		return nil, err
 	}
 
 	// PX daemon ready strings
-	fPath = filepath.Join(path, "table_23ca195d80bb3a271ccde17c2fb9fb7ff577e1c1f8cc54702a7b5f713d0330f1.csv")
+	fPath = filepath.Join(path, "table_PX_Daemon_Ready.csv")
 	readyRecs, err = getRecs(fPath, "", NewPXReadyRec)
 	if err != nil {
 		return nil, err
@@ -479,7 +479,7 @@ func getMountSetupEvents(path string, focusObj string) ([]*Event, error) {
 	finishRecs := []record{}
 
 	// NodePublishVolume strings
-	fPath := filepath.Join(path, "table_855d5500c4d4597a688b4ddbb81272e20fc4630c0d8727ec82ca7849dd387b12.csv")
+	fPath := filepath.Join(path, "table_NodePublishVolume_Request.csv")
 	startRecs, err := getRecs(fPath, focusObj, NewNodePublishVolumeRec)
 	if err != nil {
 		return nil, err
@@ -487,7 +487,7 @@ func getMountSetupEvents(path string, focusObj string) ([]*Event, error) {
 	//fmt.Printf("NodePublishVolume recs=%v\n", startRecs)
 
 	// MountVolume.MountDevice succeeded strings
-	fPath = filepath.Join(path, "table_1fe7a28925e8967658c591af15413e4c54171179e613ef9b463daa06cc94dc61.csv")
+	fPath = filepath.Join(path, "table_MountDevice_Succeeded.csv")
 	ret, err := getRecs(fPath, focusObj, NewMountDeviceSetupSucceededRec)
 	if err != nil {
 		return nil, err
@@ -496,7 +496,7 @@ func getMountSetupEvents(path string, focusObj string) ([]*Event, error) {
 	finishRecs = append(finishRecs, ret...)
 
 	// MountVolume.SetUp failed strings
-	fPath = filepath.Join(path, "table_d3043b4ae27f9ba9811e5c0c4af7b11a01983fbe23c221341eea698bbcfba922.csv")
+	fPath = filepath.Join(path, "table_MountVolume_Failed.csv")
 	ret, err = getRecs(fPath, focusObj, NewMountVolumeSetupFailedRec)
 	if err != nil {
 		return nil, err
@@ -538,7 +538,7 @@ func getMountSetupEvents(path string, focusObj string) ([]*Event, error) {
 			finishIdx++
 			continue
 		} else if !sourceMatches(startSources, finishSources) {
-			if sourceLess(startRec, finishRec) {
+			if sourceLessThan(startRec, finishRec) {
 				// start without finish
 				event := &Event{
 					Name:         mountSetupEvent,
