@@ -613,6 +613,9 @@ func truncateString(str string, maxLen int) string {
 func getRecs(fpath string, focusObj string, recFunc valuesToRec) ([]record, error) {
 	f, err := os.Open(fpath)
 	if err != nil {
+		if os.IsNotExist(err) {
+			return nil, nil
+		}
 		log.Fatal(err)
 	}
 	defer f.Close()
