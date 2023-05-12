@@ -16,9 +16,16 @@ class Parser:
         files_to_parse = []
         for path, subdirs, files in os.walk(self.ROOT_DIR):
             for name in files:
-                if name.endswith(self.master.PX_LOG) or name.endswith(self.master.KUBECTL_LOG):
+                if name.endswith(self.master.PX_LOG):
                     filename = os.path.join(path, name)
                     files_to_parse.append(filename)
+
+                # Check if the kubelet log is not empty
+                if name.endswith(self.master.KUBECTL_LOG):
+                    filename = os.path.join(path, name)
+                    if open(filename, "r").read().find("-- No entries --") == -1:
+                        files_to_parse.append(filename)
+
         print(files_to_parse)
         for logfile in files_to_parse:
             for line in open(logfile, "r"):
